@@ -1,0 +1,12 @@
+form(name="topicform" novalidate)
+  h1 Create a topic
+  div.form-group
+    label.control-label Topic
+    input.form-control(type="text" name="title" ng-model="topics.topic.name" required)
+    span(ng-show="topicform.title.$touched && topicform.title.$invalid") A title is required.
+  div.form-group
+    label.control-label Topic Image Source URL
+    input.form-control(type="url" name="url" ng-model="topics.topic.url" required)
+    span(ng-show="topicform.url.$touched && topicform.url.$invalid") A valid URL is required.
+  button.btn.btn-primary(ng-click="topics.saveTopic()" ng-disabled="topicform.$invalid") Submit
+  button.btn.btn-danger(ng-click="topics.goback()") Cancel

@@ -1,0 +1,24 @@
+{
+  "name": "node-tuthub",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "bmacheski <bwm0007@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/bmacheski/node-tuthub",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Materialize": "materialize#^0.97.5",
+    "angular": "^1.5.0",
+    "angular-route": "^1.5.0"
+  }
+}

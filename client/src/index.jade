@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+  head
+    link(rel="stylesheet" href="lib/build.css")
+    link(rel="stylesheet" href="assets/main.css")
+  body(ng-app="tutHub")
+    section(ng-include="'views/navbar.html'")
+    section(ng-include="'views/topics.html'", ng-controller="TopicsCtrl as topics")
+    div.container.holder
+        div(ng-view)
+
+    <!--build.js-->
+    script(src="lib/build.js")
+
+    <!--main-->
+    script(src="assets/scripts/app.js")
+
+    <!--controlllers-->
+    script(src="assets/scripts/controllers/topics.controller.js")
+
+    <!--factories-->
+    script(src="assets/scripts/factories/topics.factory.js")

@@ -1,0 +1,12 @@
+nav
+  div.nav-wrapper.blue
+    a.tuthub-logo(ng-href="#/") TutHub
+    ul#nav-mobile.right.hide-on-med-and-down
+      li
+        a(ng-href="#/bookmarks") Bookmarks
+      li
+        a(ng-href="#/topics/new") Create topic
+      li
+        a(ng-href="#/login") Login
+      li
+        a(ng-click="main.logout()") Logout
