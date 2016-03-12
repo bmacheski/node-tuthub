@@ -3,26 +3,7 @@ ul.collection
   table.tutlist.table.bordered.centered
     thead
       tr
-        th
         th Title
-        th Source
-        th
-        th
-        th.del-x
     tr.tutorial(ng-repeat="(id, tutorial) in tut.tutorials  | orderBy:'-count'")
-      td.count-column
-        a.mdi.mdi-arrow-up-bold(ng-click="tut.incrementVote(tutorial.$id)")
-        br
-        p.tut-count {{tutorial.count}}
-        a.mdi.mdi-arrow-down-bold(ng-click="tut.decrementVote(tutorial.$id)")
       td
-        a(target="_blank" ng-href="{{tutorial.URL}}") {{tutorial.title}}
-      td {{tutorial.type}}
-      td
-        a(ng-href="#/topics/{{tut.topicid}}/{{tutorial.$id}}/comments") Comments
-      td.bookmark-td
-        a(ng-show="auth" ng-click="tut.bookmarkTut(id, tutorial.$id)" ng-class="{ 'mdi mdi-bookmark-outline pointer' : tutorial.$id !== tut.bkeys[tutorial.$id], 'mdi mdi-bookmark-check pointer' : tutorial.$id === tut.bkeys[tutorial.$id] }")
-      td.del-button-td
-        a(ng-show="auth.github.username === tutorial.creator" ng-click="tut.deleteTut(tutorial.$id)" class="mdi mdi-window-close pointer")
-
-a(ng-show="auth" type="button" class="btn btn-default add-tut-button" ng-click="tut.go()") Add a tutorial
+        a(target="_blank" ng-href="{{tutorial.url}}") {{tutorial.name}}

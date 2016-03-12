@@ -19,7 +19,6 @@ angular
 
       addTopic(topic) {
         topics.push(topic)
-        console.log('added-->', topics)
       }
     }
   }
