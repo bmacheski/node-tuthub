@@ -10,7 +10,7 @@ angular
     vm.saveTopic = function() {
       let topic = { name: vm.topic.name }
       $http
-        .post('/topics', topic)
+        .post('/api/topics', topic)
         .then(function() {
           TopicFactory.addTopic(topic)
         })

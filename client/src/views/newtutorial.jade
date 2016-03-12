@@ -1,0 +1,15 @@
+div.row
+  form.col.s12(name="tutform" novalidate)
+    div.row
+      div.input-field.col.s12
+        input(name="title" type="text" ng-model="main.tutorial.title" required)
+        label(for="title") Title
+        span(ng-show="tutform.title.$touched && tutform.title.$invalid") A title is required.
+    div.row
+      div.input-field.col.s12
+        input(name="url" type="url" ng-model="main.tutorial.URL" required)
+        label(for="url") URL
+        span(ng-show="tutform.url.$touched && tutform.url.$invalid") A url is required.
+    select(material-select)
+      option(ng-repeat="value in newtut.topics | orderBy: 'name'") {{value.name}}
+  a.waves-effect.waves-light.btn Submit tutorial

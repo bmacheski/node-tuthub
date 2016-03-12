@@ -10,7 +10,7 @@ angular
         return topics
         ? $q.when(topics)
         : $http
-          .get('/topics')
+          .get('/api/topics')
           .then((res) => {
             topics = res.data
             return topics

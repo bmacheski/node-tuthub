@@ -2,7 +2,8 @@
 
 angular
   .module('tutHub', [
-    'ngRoute'
+    'ngRoute',
+    'ui.materialize'
   ])
   .config(config);
 
@@ -11,15 +12,20 @@ angular
       .when('/', {
         templateUrl: 'views/home.html'
       })
-      .when('/topics/new', {
+      .when('/topic/new', {
         templateUrl: 'views/newtopic.html',
         controller: 'NewTopicCtrl',
         controllerAs: 'newtopic'
       })
-      .when('/topics/:topicid', {
+      .when('/topic/:topicId', {
         templateUrl: 'views/tutorials.html',
         controller: 'TutorialCtrl',
         controllerAs: 'tut'
+      })
+      .when('/tutorial/new', {
+        templateUrl: 'views/newtutorial.html',
+        controller: 'NewTutorialCtrl',
+        controllerAs: 'newtut'
       })
       .otherwise({
         redirectTo: '/'

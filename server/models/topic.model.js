@@ -3,7 +3,7 @@
 const mongoose = require('mongoose')
 
 const TopicSchema = new mongoose.Schema({
-  name: String
+  name: String,
   tutorials: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Tutorial'

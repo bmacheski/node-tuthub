@@ -13,7 +13,7 @@ angular
         vm.topics = data
       })
 
-    vm.goToTut =  function(id) {
-     $location.path(`/topics/${id}`);
+    vm.goToTut =  function(topic) {
+     $location.path(`/topic/${topic}`);
     }
   }

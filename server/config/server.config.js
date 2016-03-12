@@ -10,5 +10,5 @@ module.exports = (app, express) => {
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(express.static(path.join(config.root, 'client/public')))
 
-  require('./routes')(app)
+  require('../routes')(app)
 }

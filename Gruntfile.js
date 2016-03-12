@@ -40,6 +40,10 @@ module.exports = function (grunt) {
         dest: {
           'js': 'client/public/lib/build.js',
           'css': 'client/public/lib/build.css'
+        },
+        dependencies: {
+          'materialize': 'jquery',
+          'angular-materialize': ['jquery']
         }
       }
     },

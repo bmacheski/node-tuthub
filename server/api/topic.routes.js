@@ -6,7 +6,8 @@ module.exports = app => {
 
   app.get('/topics', (req, res) => {
     Topic
-      .find({}, (err, topics) => {
+      .find()
+      .exec((err, topics) => {
         res.send(topics)
       })
   })
@@ -20,3 +21,4 @@ module.exports = app => {
     res.send('topic saved!')
   })
 }
+
