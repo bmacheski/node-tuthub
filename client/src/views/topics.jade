@@ -7,5 +7,5 @@ ul#slide-out.side-nav.fixed.collection
           label(for="search")
             i.mdi.mdi-magnify
   ul
-    li(ng-repeat="topic in topic.topics")
-      p {{topic}}
+    li(ng-repeat="(id, t) in topic.topics")
+      p(ng-click="topic.goToTut(t._id)"){{t.name}}

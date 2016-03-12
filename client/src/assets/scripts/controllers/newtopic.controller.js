@@ -1,8 +1,10 @@
+'use strict';
+
 angular
   .module('tutHub')
-  .controller('TopicsCtrl', TopicsCtrl)
+  .controller('NewTopicCtrl', NewTopicCtrl);
 
-  function TopicsCtrl(TopicsFactory, $http) {
+  function NewTopicCtrl(TopicFactory, $http, $scope) {
     var vm = this
 
     vm.saveTopic = function() {
@@ -10,7 +12,7 @@ angular
       $http
         .post('/topics', topic)
         .then(function() {
-          TopicsFactory.addTopic(topic)
+          TopicFactory.addTopic(topic)
         })
     }
   }
