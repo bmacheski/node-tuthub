@@ -4,15 +4,15 @@ angular
   .module('tutHub')
   .controller('RegisterCtrl', RegisterCtrl);
 
-  function RegisterCtrl($http) {
+  function RegisterCtrl($http, AuthFactory, $location) {
     var vm = this;
 
     vm.signup = function() {
-      let info = { email: vm.info.email, password: vm.info.password }
-      $http
-        .post('/register', info)
-        .then(() => {
-          console.log('registration success.')
-        })
+      let email = vm.info.email
+      let password = vm.info.password
+
+      AuthFactory.signup(email, password, function() {
+        $location.path('/')
+      })
     }
   }

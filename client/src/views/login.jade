@@ -1,0 +1,12 @@
+h3 Login
+div.row
+  form.col.s12(ng-submit="auth.login()")
+    div.row
+      div.input-field.col.s12
+        input#email(type="email" class="validate" ng-model="auth.info.email")
+        label(for="email") Email
+    div.row
+      div.input-field.col.s12
+        input(type="text" class="validate" ng-model="auth.info.password")
+        label(for="email") Password
+    input(type="submit" value="Submit")

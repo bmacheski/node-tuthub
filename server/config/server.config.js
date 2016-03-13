@@ -14,7 +14,11 @@ module.exports = (app, express) => {
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(express.static(path.join(config.root, 'client/public')))
 
-  app.use(session({ secret: SESSION_SECRET }))
+  app.use(session({
+    secret: SESSION_SECRET,
+    resave: true,
+    saveUninitialized: false
+  }))
   app.use(passport.initialize())
   app.use(passport.session())
 

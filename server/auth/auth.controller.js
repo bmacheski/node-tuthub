@@ -4,10 +4,19 @@ const User = require('../models/user.model')
 
 const AuthController = {}
 
-AuthController.login = (req, res) => { res.send(200) }
+AuthController.login = (req, res) => {
+  res.cookie('email', req.body.email)
+  res.send({ message: 'Login success.' })
+}
 
 AuthController.logout = (req, res) => {
-  req.session.regenerate(function(err) { if (err) throw err })
+  req.session.regenerate(function(err) {
+    if (err) throw err
+    else {
+      res.clearCookie('email')
+      res.send({ message: 'Logout successful.' })
+    }
+  })
 }
 
 AuthController.register = (req, res) => {
@@ -17,6 +26,7 @@ AuthController.register = (req, res) => {
     else {
       User.create(req.body, (err) => {
         if (err) throw err
+        res.cookie('email', req.body.email)
         res.send({ message: 'User registered succesfully.' })
       })
     }

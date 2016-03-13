@@ -4,7 +4,7 @@ html(lang="en")
     link(rel="stylesheet" href="lib/build.css")
     link(rel="stylesheet" href="assets/main.css")
   body(ng-app="tutHub")
-    section(ng-include="'views/navbar.html'")
+    section(ng-include="'views/navbar.html'", ng-controller="AuthCtrl as auth")
     section(ng-include="'views/topics.html'", ng-controller="TopicCtrl as topic")
     div.container.holder
         div(ng-view)
@@ -16,6 +16,7 @@ html(lang="en")
     script(src="assets/scripts/app.js")
 
     <!--controlllers-->
+    script(src="assets/scripts/controllers/auth.controller.js")
     script(src="assets/scripts/controllers/newtopic.controller.js")
     script(src="assets/scripts/controllers/newtutorial.controller.js")
     script(src="assets/scripts/controllers/register.controller.js")
@@ -23,5 +24,6 @@ html(lang="en")
     script(src="assets/scripts/controllers/tutorial.controller.js")
 
     <!--factories-->
+    script(src="assets/scripts/factories/auth.factory.js")
     script(src="assets/scripts/factories/topic.factory.js")
     script(src="assets/scripts/factories/tutorial.factory.js")

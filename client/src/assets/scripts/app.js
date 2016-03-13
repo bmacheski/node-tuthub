@@ -3,9 +3,11 @@
 angular
   .module('tutHub', [
     'ngRoute',
-    'ui.materialize'
+    'ui.materialize',
+    'ngCookies'
   ])
-  .config(config);
+  .config(config)
+  .run(run)
 
   function config($routeProvider) {
     $routeProvider
@@ -32,7 +34,16 @@ angular
         controller: 'RegisterCtrl',
         controllerAs: 'register'
       })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'AuthCtrl',
+        controllerAs: 'auth'
+      })
       .otherwise({
         redirectTo: '/'
       });
+  }
+
+  function run($rootScope, AuthFactory) {
+    $rootScope.loggedIn = Boolean(AuthFactory.checkLoggedIn())
   }

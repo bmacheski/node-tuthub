@@ -2,15 +2,12 @@ nav
   div.nav-wrapper.blue
     a.tuthub-logo(ng-href="#/") TutHub
     ul#nav-mobile.right.hide-on-med-and-down
-      li
+      li(ng-show="loggedIn")
         a(ng-href="#/bookmarks") Bookmarks
-      li
-        a(ng-href="#/topic/new") Create topic
-      li
+      li(ng-show="loggedIn")
         a(ng-href="#/tutorial/new") Create tutorial
-      li
+      li(ng-hide="loggedIn")
         a(ng-href="#/register") Sign up
-      li
+      li(ng-hide="loggedIn")
         a(ng-href="#/login") Login
-      li
-        a(ng-click="main.logout()") Logout
+      li(ng-show="loggedIn", ng-click="auth.logout()") Logout
