@@ -1,0 +1,10 @@
+h3 Bookmarks
+ul.collection
+  table.tutlist.table.bordered.centered
+    thead
+      tr
+        th Title
+    tr(ng-repeat="(id, b) in bookmark.bookmarks")
+      td
+        a(target="_blank" ng-href="{{b.url}}") {{b.name}}
+

@@ -2,6 +2,7 @@
 
 const TopicController    = require('./api/topic.controller')
     , TutorialController = require('./api/tutorial.controller')
+    , BookmarkController = require('./api/bookmark.controller')
     , AuthController     = require('./auth/auth.controller')
     , passport           = require('passport')
 
@@ -14,6 +15,10 @@ module.exports = app => {
   // tutorial routes
   app.post('/api/tutorials', TutorialController.saveTutorial)
   app.get('/api/tutorials/:tutId', TutorialController.findTutorial)
+
+  // bookmark routes
+  app.post('/api/bookmarks', BookmarkController.saveBookmark)
+  app.get('/api/bookmarks/:user', BookmarkController.findBookmark)
 
   // authentication routes
   app.post('/register', AuthController.register)

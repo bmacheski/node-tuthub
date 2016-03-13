@@ -4,7 +4,8 @@ angular
   .module('tutHub', [
     'ngRoute',
     'ui.materialize',
-    'ngCookies'
+    'ngCookies',
+    'ngMdIcons'
   ])
   .config(config)
   .run(run)
@@ -38,6 +39,11 @@ angular
         templateUrl: 'views/login.html',
         controller: 'AuthCtrl',
         controllerAs: 'auth'
+      })
+      .when('/bookmarks', {
+        templateUrl: 'views/bookmarks.html',
+        controller: 'BookmarkCtrl',
+        controllerAs: 'bookmark'
       })
       .otherwise({
         redirectTo: '/'

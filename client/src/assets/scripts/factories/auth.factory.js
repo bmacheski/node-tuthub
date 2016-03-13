@@ -23,7 +23,6 @@ angular
         $http
           .post('/login', info)
           .then(() => {
-            console.log('hello from res')
             $rootScope.loggedIn = true
             user.email = email
             $cookies.email = email
@@ -43,6 +42,10 @@ angular
       },
 
       checkLoggedIn() {
+        return $cookies.get('email')
+      },
+
+      getCurrentUserEmail() {
         return $cookies.get('email')
       }
     }
