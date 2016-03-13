@@ -1,7 +1,7 @@
 'use strict'
 
 const Tutorial = require('../models/tutorial.model')
-  , Topic      = require('../models/topic.model')
+    , Topic    = require('../models/topic.model')
 
 const TutorialController = {}
 

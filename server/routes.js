@@ -1,7 +1,9 @@
 'use strict'
 
-const TopicController  = require('./api/topic.controller')
-  , TutorialController = require('./api/tutorial.controller')
+const TopicController    = require('./api/topic.controller')
+    , TutorialController = require('./api/tutorial.controller')
+    , AuthController     = require('./auth/auth.controller')
+    , passport           = require('passport')
 
 module.exports = app => {
 
@@ -12,4 +14,9 @@ module.exports = app => {
   // tutorial routes
   app.post('/api/tutorials', TutorialController.saveTutorial)
   app.get('/api/tutorials/:tutId', TutorialController.findTutorial)
+
+  // authentication routes
+  app.post('/register', AuthController.register)
+  app.post('/login', passport.authenticate('local'), AuthController.login)
+  app.get('/logout', AuthController.logout)
 }

@@ -1,9 +1,9 @@
 'use strict'
 
-const express = require('express')
-  , mongoose  = require('mongoose')
-  , app       = express()
-  , config    = require('./config/development.config')
+const express   = require('express')
+    , mongoose  = require('mongoose')
+    , app       = express()
+    , config    = require('./config/development.config')
 
 mongoose.connect(config.dbUrl)
 

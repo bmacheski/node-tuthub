@@ -27,6 +27,11 @@ angular
         controller: 'NewTutorialCtrl',
         controllerAs: 'newtut'
       })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'RegisterCtrl',
+        controllerAs: 'register'
+      })
       .otherwise({
         redirectTo: '/'
       });
