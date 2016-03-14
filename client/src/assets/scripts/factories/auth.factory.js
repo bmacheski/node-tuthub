@@ -8,14 +8,14 @@ angular
     let user = {};
 
     return {
-      signup(email, password, cb) {
-        let info = { email: email, password: password };
+      signup(username, password, cb) {
+        let info = { username: username, password: password };
         $http
           .post('/register', info)
           .then(() => {
-            user.email = email;
+            user.username = username;
             $rootScope.loggedIn = true;
-            $cookies.email = email;
+            $cookies.username = username;
             cb();
           })
       },
@@ -26,8 +26,8 @@ angular
           .post('/login', info)
           .then(() => {
             $rootScope.loggedIn = true;
-            user.email = email;
-            $cookies.email = email;
+            user.username = username;
+            $cookies.username = username;
             cb();
           })
       },
@@ -37,18 +37,18 @@ angular
           .get('/logout')
           .then(() => {
             $rootScope.loggedIn = false;
-            delete user.email;
-            delete $cookies.email;
+            delete user.username;
+            delete $cookies.username;
             cb();
           })
       },
 
       checkLoggedIn() {
-        return $cookies.get('email');
+        return $cookies.get('username');
       },
 
       getCurrentUserEmail() {
-        return $cookies.get('email');
+        return $cookies.get('username');
       }
     }
   }

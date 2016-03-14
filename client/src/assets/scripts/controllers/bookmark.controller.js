@@ -4,7 +4,7 @@ angular
   .module('tutHub')
   .controller('BookmarkCtrl', BookmarkCtrl);
 
-  function BookmarkCtrl(BookmarkFactory, AuthFactory, $scope) {
+  function BookmarkCtrl(BookmarkFactory, AuthFactory) {
     let vm = this;
 
     let email = AuthFactory.getCurrentUserEmail();
@@ -12,6 +12,9 @@ angular
     BookmarkFactory.getBookmarks(email, (bookmarks) => {
       vm.bookmarks = bookmarks;
     })
+
+    let bookmarkIdx = vm.bookmarks
+    console.log(vm.bookmarks)
 
     vm.removeBookmark = function(id) {
       BookmarkFactory.deleteBookmark(email, id, (bookmarks) => {

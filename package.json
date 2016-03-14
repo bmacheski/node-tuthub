@@ -11,8 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/bmacheski/node-tuthub.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Brian Macheski <bwm0007@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/bmacheski/node-tuthub/issues"
   },

@@ -25,6 +25,11 @@ angular
         controller: 'TutorialCtrl',
         controllerAs: 'tut'
       })
+      .when('/topic/:topicId/comments', {
+        templateUrl: 'views/comments.html',
+        controller: 'CommentsCtrl',
+        controllerAs: 'comment'
+      })
       .when('/tutorial/new', {
         templateUrl: 'views/newtutorial.html',
         controller: 'NewTutorialCtrl',

@@ -1,0 +1,28 @@
+ul.collection
+  table
+    thead
+      tr
+        th
+        th Title
+        th Source
+        th
+        th
+    tr
+      td
+      td
+        a(target="_blank" ng-href="{{comm.commentView.URL}}") {{comm.commentView.title}}
+      td {{comm.commentView.type}}
+
+h5 Comments
+ul.collection
+  li(ng-repeat="(id, comment) in comment.comments")
+    p {{comment.comment}}
+    em
+      span Posted by:
+        em  {{comment.author}}
+form.col.s12
+  div.row
+    div(class="input-field col s12")
+      textarea#textarea.materialize-textarea(ng-model="comment.commentMessage")
+      label(for="textarea") Comment
+  a(class="waves-effect waves-light btn" ng-click="comment.postComment()") Post comment

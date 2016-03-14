@@ -1,6 +1,7 @@
 'use strict'
 
 const TopicController    = require('./api/topic.controller')
+    , CommentController  = require('./api/comment.controller')
     , TutorialController = require('./api/tutorial.controller')
     , BookmarkController = require('./api/bookmark.controller')
     , AuthController     = require('./auth/auth.controller')
@@ -15,6 +16,10 @@ module.exports = app => {
   // tutorial routes
   app.post('/api/tutorials', TutorialController.saveTutorial)
   app.get('/api/tutorials/:tutId', TutorialController.findTutorial)
+
+  // comment routes
+  app.post('/api/comments', CommentController.saveComment)
+  app.get('/api/comments/:tutId', CommentController.findComment)
 
   // bookmark routes
   app.post('/api/bookmarks', BookmarkController.saveBookmark)

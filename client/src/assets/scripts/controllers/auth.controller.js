@@ -8,9 +8,9 @@ angular
     var vm = this;
 
     vm.login = function() {
-      let email = vm.info.email;
+      let username = vm.info.username;
       let password = vm.info.password;
-      AuthFactory.login(email, password, () => {
+      AuthFactory.login(username, password, () => {
         $location.path('/');
       })
     }

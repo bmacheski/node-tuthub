@@ -7,6 +7,8 @@ angular
 
     return {
       getTutorials(topic, cb) {
+        return tutorials[topic] ?
+        cb(tutorials[topic]) :
         $http
           .get(`/api/tutorials/${topic}`)
           .then((res) => {

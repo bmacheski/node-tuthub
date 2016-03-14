@@ -8,10 +8,10 @@ angular
     var vm = this;
 
     vm.signup = function() {
-      let email = vm.info.email
+      let username = vm.info.username
       let password = vm.info.password
 
-      AuthFactory.signup(email, password, function() {
+      AuthFactory.signup(username, password, function() {
         $location.path('/')
       })
     }

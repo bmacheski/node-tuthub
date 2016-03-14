@@ -4,9 +4,12 @@ ul.collection
     thead
       tr
         th Title
-      tr
+        th
+        th
     tr.tutorial(ng-repeat="(id, tutorial) in tut.tutorials  | orderBy:'-count'")
       td
         a(target="_blank" ng-href="{{tutorial.url}}") {{tutorial.name}}
+      td
+        a(ng-href="#/topic/{{tutorial._id}}/comments") Comments
       td
         ng-md-icon(ng-click="tut.addToBookmarks(tutorial._id, tutorial.name, tutorial.url)" icon="bookmark_outline")
