@@ -1,9 +1,11 @@
+'use strict';
+
 angular
   .module('tutHub')
-  .factory('TopicFactory', TopicFactory)
+  .factory('TopicFactory', TopicFactory);
 
   function TopicFactory($http, $q) {
-    let topics
+    let topics;
 
     return {
       getAllTopics() {
@@ -12,13 +14,13 @@ angular
         : $http
           .get('/api/topics')
           .then((res) => {
-            topics = res.data
-            return topics
+            topics = res.data;
+            return topics;
           })
       },
 
       addTopic(topic) {
-        topics.push(topic)
+        topics.push(topic);
       }
     }
   }

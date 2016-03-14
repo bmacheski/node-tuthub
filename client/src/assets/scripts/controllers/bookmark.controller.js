@@ -6,7 +6,6 @@ angular
 
   function BookmarkCtrl(BookmarkFactory, AuthFactory) {
     let vm = this;
-
     let email = AuthFactory.getCurrentUserEmail();
 
     BookmarkFactory.getBookmarks(email, (bookmarks) => {
@@ -14,7 +13,6 @@ angular
     })
 
     let bookmarkIdx = vm.bookmarks
-    console.log(vm.bookmarks)
 
     vm.removeBookmark = function(id) {
       BookmarkFactory.deleteBookmark(email, id, (bookmarks) => {

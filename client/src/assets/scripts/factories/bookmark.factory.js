@@ -1,13 +1,16 @@
+'use strict';
+
 angular
   .module('tutHub')
   .factory('BookmarkFactory', BookmarkFactory);
 
   function BookmarkFactory($http) {
     let bookmarks = [];
+    let apiCallStatus = false;
 
     return {
-      saveBookmark(id, email, obj) {
-        let item = { id: id, email: email };
+      saveBookmark(id, username, obj) {
+        let item = { id: id, username: username };
         $http
           .post('/api/bookmarks', item)
           .then(() => {
@@ -15,12 +18,13 @@ angular
           })
       },
 
-      getBookmarks(email, cb) {
-        return bookmarks.length > 0 ?
+      getBookmarks(username, cb) {
+        return apiCallStatus ?
         cb(bookmarks) :
         $http
-          .get(`/api/bookmarks/${email}`)
+          .get(`/api/bookmarks/${username}`)
           .then((res) => {
+            apiCallStatus = true;
             if (Array.isArray(res.data)) {
               bookmarks = res.data;
               cb(bookmarks);

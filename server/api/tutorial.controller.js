@@ -15,12 +15,12 @@ TutorialController.saveTutorial = (req, res) => {
         tut.save()
         topic.tutorials.push(tut._id)
         topic.save()
+        res.send({ id: tut._id })
       } else {
         let newTopic = new Topic({ name: req.body.topic })
         newTopic.save()
       }
     })
-  res.send('ok!')
 }
 
 TutorialController.findTutorial = (req, res) => {

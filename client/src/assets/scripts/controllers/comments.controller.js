@@ -6,7 +6,6 @@ angular
 
   function CommentsCtrl(CommentFactory, AuthFactory, TutorialFactory, $routeParams) {
     let vm = this;
-
     let username =  AuthFactory.getCurrentUserEmail()
     let topic = $routeParams.topicId
 
@@ -19,9 +18,7 @@ angular
     });
 
     vm.postComment = function() {
-      let comment = {
-        topic: topic, author: username, comment: vm.commentMessage
-      }
-      CommentFactory.saveComment(comment)
+      let comment = { topic: topic, author: username, comment: vm.commentMessage };
+      CommentFactory.saveComment(comment);
     }
   }

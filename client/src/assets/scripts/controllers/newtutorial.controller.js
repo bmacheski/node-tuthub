@@ -14,15 +14,12 @@ angular
       });
 
     vm.saveTut = function() {
-      let topic = vm.tutorial.name;
 
-      let tutorial = {
-        name: vm.tutorial.title,
-        url: vm.tutorial.url,
-        topic: topic
-      }
+    let topic = vm.tutorial.name;
+    let name = vm.tutorial.title
+    let url = vm.tutorial.url
 
-      TutorialFactory.addTutorial(tutorial, topic, () => {
+    TutorialFactory.addTutorial(name, url, topic, () => {
         $location.path(`/topic/${topic}`);
       })
     }

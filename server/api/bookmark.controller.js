@@ -7,7 +7,7 @@ const BookmarkController = {}
 
 BookmarkController.findBookmark = (req, res) => {
   User
-    .findOne({ email: req.params.user })
+    .findOne({ username: req.params.user })
     .populate('bookmarks')
     .exec((err, user) => {
       if (err) throw err
@@ -21,7 +21,7 @@ BookmarkController.findBookmark = (req, res) => {
 
 BookmarkController.saveBookmark = (req, res) => {
   User
-    .findOne({ email: req.body.email})
+    .findOne({ username: req.body.username })
     .exec((err, user) => {
       if (user && user.bookmarks) {
         user.bookmarks.push(req.body.id)
