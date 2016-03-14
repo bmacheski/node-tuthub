@@ -19,6 +19,7 @@ module.exports = app => {
   // bookmark routes
   app.post('/api/bookmarks', BookmarkController.saveBookmark)
   app.get('/api/bookmarks/:user', BookmarkController.findBookmark)
+  app.delete('/api/bookmarks/:user/:id', BookmarkController.deleteBookmark)
 
   // authentication routes
   app.post('/register', AuthController.register)

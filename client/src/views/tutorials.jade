@@ -9,4 +9,4 @@ ul.collection
       td
         a(target="_blank" ng-href="{{tutorial.url}}") {{tutorial.name}}
       td
-        ng-md-icon(ng-click="tut.addToBookmarks(tutorial._id)" icon="bookmark_outline")
+        ng-md-icon(ng-click="tut.addToBookmarks(tutorial._id, tutorial.name, tutorial.url)" icon="bookmark_outline")

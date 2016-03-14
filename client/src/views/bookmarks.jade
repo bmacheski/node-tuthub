@@ -4,7 +4,10 @@ ul.collection
     thead
       tr
         th Title
+      tr
     tr(ng-repeat="(id, b) in bookmark.bookmarks")
       td
         a(target="_blank" ng-href="{{b.url}}") {{b.name}}
+      td
+        ng-md-icon(ng-click="bookmark.removeBookmark(b._id)" icon="delete")
 

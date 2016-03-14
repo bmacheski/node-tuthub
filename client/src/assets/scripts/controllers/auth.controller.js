@@ -8,16 +8,16 @@ angular
     var vm = this;
 
     vm.login = function() {
-      let email = vm.info.email
-      let password = vm.info.password
+      let email = vm.info.email;
+      let password = vm.info.password;
       AuthFactory.login(email, password, () => {
-        $location.path('/')
+        $location.path('/');
       })
     }
 
     vm.logout = function() {
       AuthFactory.logout(() => {
-        $location.path('/login')
+        $location.path('/login');
       })
     }
   }

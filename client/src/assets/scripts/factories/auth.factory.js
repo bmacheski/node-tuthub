@@ -1,32 +1,34 @@
+'use strict';
+
 angular
   .module('tutHub')
-  .factory('AuthFactory', AuthFactory)
+  .factory('AuthFactory', AuthFactory);
 
   function AuthFactory($http, $cookies, $rootScope) {
-    let user = {}
+    let user = {};
 
     return {
       signup(email, password, cb) {
-        let info = { email: email, password: password }
+        let info = { email: email, password: password };
         $http
           .post('/register', info)
           .then(() => {
-            user.email = email
-            $rootScope.loggedIn = true
-            $cookies.email = email
-            cb()
+            user.email = email;
+            $rootScope.loggedIn = true;
+            $cookies.email = email;
+            cb();
           })
       },
 
       login(email, password, cb) {
-        let info = { email: email, password: password }
+        let info = { email: email, password: password };
         $http
           .post('/login', info)
           .then(() => {
-            $rootScope.loggedIn = true
-            user.email = email
-            $cookies.email = email
-            cb()
+            $rootScope.loggedIn = true;
+            user.email = email;
+            $cookies.email = email;
+            cb();
           })
       },
 
@@ -34,19 +36,19 @@ angular
         $http
           .get('/logout')
           .then(() => {
-            $rootScope.loggedIn = false
-            delete user.email
-            delete $cookies.email
-            cb()
+            $rootScope.loggedIn = false;
+            delete user.email;
+            delete $cookies.email;
+            cb();
           })
       },
 
       checkLoggedIn() {
-        return $cookies.get('email')
+        return $cookies.get('email');
       },
 
       getCurrentUserEmail() {
-        return $cookies.get('email')
+        return $cookies.get('email');
       }
     }
   }

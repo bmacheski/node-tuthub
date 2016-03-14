@@ -10,7 +10,7 @@ angular
     TopicFactory
       .getAllTopics()
       .then((data) => {
-        vm.topics = data
+        vm.topics = data;
       })
 
     vm.goToTut =  function(topic) {

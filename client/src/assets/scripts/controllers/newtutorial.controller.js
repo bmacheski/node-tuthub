@@ -10,7 +10,7 @@ angular
     TopicFactory
       .getAllTopics()
       .then((data) => {
-        vm.topics = data
+        vm.topics = data;
       });
 
     vm.saveTut = function() {
@@ -24,6 +24,6 @@ angular
 
       TutorialFactory.addTutorial(tutorial, topic, () => {
         $location.path(`/topic/${topic}`);
-      });
+      })
     }
   }
