@@ -22,7 +22,7 @@ AuthController.logout = (req, res) => {
 AuthController.register = (req, res) => {
   User.findOne({ username: req.body.username }, (err, user) => {
     if (err) throw err
-    if (err) res.send({ message: 'That username already exists.' })
+    if (user) { res.sendStatus(403) }
     else {
       User.create(req.body, (err) => {
         if (err) throw err

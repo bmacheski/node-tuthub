@@ -28,7 +28,7 @@ angular
       .when('/topic/:topicId/comments', {
         templateUrl: 'views/comments.html',
         controller: 'CommentsCtrl',
-        controllerAs: 'comment'
+        controllerAs: 'comm'
       })
       .when('/tutorial/new', {
         templateUrl: 'views/newtutorial.html',

@@ -43,7 +43,7 @@ BookmarkController.deleteBookmark = (req, res) => {
       if (user && user.bookmarks) {
         let ids = user.bookmarks.map((bookmark) => bookmark._id.toString())
         let idx = ids.indexOf(req.params.id)
-        user.remove(user.bookmarks[idx])
+        user.bookmarks.remove(user.bookmarks[idx])
         user.save()
         res.send('deleted.')
       } else {

@@ -6,9 +6,9 @@ angular
 
   function CommentsCtrl(CommentFactory, AuthFactory, TutorialFactory, $routeParams) {
     let vm = this;
-    let username =  AuthFactory.getCurrentUserEmail()
-    let topic = $routeParams.topicId
+    let topic = $routeParams.topicId;
 
+    vm.username = AuthFactory.getCurrentUserEmail()
     CommentFactory.getComments(topic, (comments) => {
       vm.comments = comments;
     })
@@ -18,7 +18,13 @@ angular
     });
 
     vm.postComment = function() {
-      let comment = { topic: topic, author: username, comment: vm.commentMessage };
+      let comment = { topic: topic, author: vm.username, comment: vm.commentMessage };
       CommentFactory.saveComment(comment);
+    }
+
+    vm.removeComment = function(id) {
+      CommentFactory.deleteComment(id, topic, (comments) => {
+        vm.comments = comments;
+      })
     }
   }

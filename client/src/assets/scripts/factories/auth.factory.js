@@ -17,6 +17,8 @@ angular
             $rootScope.loggedIn = true;
             $cookies.username = username;
             cb();
+          }, () => {
+            Materialize.toast('That username is already taken.', 3000)
           })
       },
 
@@ -29,6 +31,8 @@ angular
             user.username = username;
             $cookies.username = username;
             cb();
+          }, () => {
+            Materialize.toast('Authentication failure.', 3000)
           })
       },
 

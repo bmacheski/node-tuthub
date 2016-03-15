@@ -20,6 +20,7 @@ module.exports = app => {
   // comment routes
   app.post('/api/comments', CommentController.saveComment)
   app.get('/api/comments/:tutId', CommentController.findComment)
+  app.delete('/api/comments/:tutId/:commentId', CommentController.deleteComment)
 
   // bookmark routes
   app.post('/api/bookmarks', BookmarkController.saveBookmark)

@@ -27,8 +27,8 @@ angular
           .post('/api/tutorials', obj)
           .then((res) => {
             if (~Object.keys(tutorials).indexOf(topic)) {
-              obj = res.data
-              tutorials[topic].push();
+              obj['_id'] = res.data
+              tutorials[topic].push(obj);
             } else {
               obj['_id'] = res.data.id
               tutorials[topic] = [obj]

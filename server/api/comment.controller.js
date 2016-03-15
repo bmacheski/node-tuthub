@@ -29,8 +29,24 @@ CommentController.saveComment = (req, res) => {
       comment.save()
       tutorial.comments.push(comment._id)
       tutorial.save()
+      res.send(comment._id)
     })
-  res.send('ok!')
+}
+
+CommentController.deleteComment = (req, res) => {
+  Tutorial
+    .findById(req.params.tutId)
+    .populate('comments')
+    .exec((err, tutorials) => {
+      tutorials.comments.remove(req.params.commentId)
+      tutorials.save()
+
+      Comment.findById(req.params.commentId,
+        (err, comment) => {
+          if (err) throw err
+        })
+    })
+  res.send('done')
 }
 
 module.exports = CommentController
