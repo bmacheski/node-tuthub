@@ -5,7 +5,7 @@ ul#slide-out.side-nav.fixed.collection
         .input-field
           input#search(type="search", ng-model="name")
           label(for="search")
-            i.mdi.mdi-magnify
+            i.zmdi.zmdi-search
   ul
     li(ng-repeat="(id, t) in topic.topics | orderBy: 'name' | filter: name")
       p(ng-click="topic.goToTut(t.name)") {{t.name}}

@@ -1,5 +1,7 @@
-h3 Bookmarks
-ul.collection
+h3(ng-show="bookmark.bookmarks.length !== 0") Bookmarks
+div(ng-if="bookmark.bookmarks.length == 0")
+  h3 There aren't any bookmarks yet!
+ul.collection(ng-show="bookmark.bookmarks.length !== 0")
   table.tutlist.table.bordered.centered
     thead
       tr
@@ -9,5 +11,5 @@ ul.collection
       td
         a(target="_blank" ng-href="{{b.url}}") {{b.name}}
       td
-        ng-md-icon(ng-click="bookmark.removeBookmark(b._id)" icon="delete")
+        i.zmdi.zmdi-delete.zmdi-hc-lg(ng-click="bookmark.removeBookmark(b._id)" icon="delete")
 

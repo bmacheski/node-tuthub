@@ -36,7 +36,7 @@ BookmarkController.saveBookmark = (req, res) => {
 
 BookmarkController.deleteBookmark = (req, res) => {
   User
-    .findOne({ email: req.params.user })
+    .findOne({ username: req.params.user })
     .populate('bookmarks')
     .exec((err, user) => {
       if (err) throw err

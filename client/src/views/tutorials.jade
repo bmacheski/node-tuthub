@@ -1,5 +1,7 @@
-h3 {{tut.currentTutorial}}
-ul.collection
+div(ng-if="tut.tutorials.length == 0")
+  h3 There aren't any {{tut.currentTutorial}} tutorials yet!
+h3(ng-show="tut.tutorials.length !== 0") {{tut.currentTutorial}}
+ul.collection(ng-show="tut.tutorials.length !== 0")
   table.tutlist.table.bordered.centered
     thead
       tr
