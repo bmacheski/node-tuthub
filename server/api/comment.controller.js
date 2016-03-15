@@ -41,7 +41,7 @@ CommentController.deleteComment = (req, res) => {
       tutorials.comments.remove(req.params.commentId)
       tutorials.save()
 
-      Comment.findById(req.params.commentId,
+      Comment.findByIdAndRemove(req.params.commentId,
         (err, comment) => {
           if (err) throw err
         })

@@ -4,8 +4,7 @@ angular
   .module('tutHub', [
     'ngRoute',
     'ui.materialize',
-    'ngCookies',
-    'ngMdIcons'
+    'ngCookies'
   ])
   .config(config)
   .run(run)

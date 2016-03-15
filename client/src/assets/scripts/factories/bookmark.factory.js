@@ -9,12 +9,13 @@ angular
     let apiCallStatus = false;
 
     return {
-      saveBookmark(id, username, obj) {
+      saveBookmark(id, username, obj, cb) {
         let item = { id: id, username: username };
         $http
           .post('/api/bookmarks', item)
           .then(() => {
             bookmarks.push(obj);
+            cb(bookmarks)
           })
       },
 

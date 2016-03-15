@@ -3,6 +3,8 @@ html(lang="en")
   head
     link(rel="stylesheet" href="lib/build.css")
     link(rel="stylesheet" href="assets/main.css")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css")
+
   body(ng-app="tutHub")
     section(ng-include="'views/navbar.html'", ng-controller="AuthCtrl as auth")
     section(ng-include="'views/topics.html'", ng-controller="TopicCtrl as topic")

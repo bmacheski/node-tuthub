@@ -20,6 +20,7 @@ angular
     vm.postComment = function() {
       let comment = { topic: topic, author: vm.username, comment: vm.commentMessage };
       CommentFactory.saveComment(comment);
+      vm.commentMessage = ''
     }
 
     vm.removeComment = function(id) {

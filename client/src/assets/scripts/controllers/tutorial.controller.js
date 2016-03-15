@@ -5,7 +5,8 @@ angular
   .controller('TutorialCtrl', TutorialCtrl);
 
   function TutorialCtrl($routeParams, TutorialFactory, BookmarkFactory, AuthFactory) {
-    var vm = this;
+    let vm = this;
+    let email = AuthFactory.getCurrentUserEmail();
 
     vm.currentTutorial = $routeParams.topicId;
 
@@ -14,10 +15,19 @@ angular
     }
 
     vm.addToBookmarks = function(id, name, url) {
-      let obj = { '_id': id, name: name, url: url};
-      let email = AuthFactory.getCurrentUserEmail();
-      BookmarkFactory.saveBookmark(id, email, obj);
+      let obj = { '_id': id, name: name, url: url };
+
+      BookmarkFactory.saveBookmark(id, email, obj, (bookmarks) => {
+        vm.bIds = bookmarks.map((b) => { return b._id });
+      });
+
+      vm.name = '';
+      vm.url = '';
     }
+
+    BookmarkFactory.getBookmarks(email, (bookmarks) => {
+      vm.bIds = bookmarks.map((b) => { return b._id });
+    })
 
     TutorialFactory.getTutorials(vm.currentTutorial, (tuts) => {
       vm.tutorials = tuts;
