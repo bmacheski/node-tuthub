@@ -1,3 +1,7 @@
+#nav-mobile {
+  margin-right: 10px;
+}
+
 .add-tut-button {
   margin-top: 15px !important;
   margin-bottom: 15px !important;
@@ -12,14 +16,6 @@
 
 .bk-src {
   width: 200px;
-}
-
-body {
-  padding: 0;
-}
-
-.bookmark-td {
-  width: 60px;
 }
 
 .count-column {
@@ -47,6 +43,20 @@ body {
 
 .del-x {
   width: 40px;
+}
+
+.edit, .delete {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.delete {
+  margin-left: 10px;
+}
+
+.edit-delete-td {
+  position: relative;
+  left: 25px;
 }
 
 .holder {
@@ -111,4 +121,9 @@ td {
   font-size: 2.1rem;
   padding: 0;
   white-space: nowrap;
+}
+
+.upvote {
+  display: inline;
+  margin-left: 10px;
 }

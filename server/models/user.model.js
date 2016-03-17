@@ -9,6 +9,10 @@ const UserSchema = new mongoose.Schema({
   bookmarks: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Tutorial'
+  }],
+  tutorialsCreated: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Tutorial'
   }]
 })
 

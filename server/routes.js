@@ -15,7 +15,9 @@ module.exports = app => {
 
   // tutorial routes
   app.post('/api/tutorials', TutorialController.saveTutorial)
+  app.post('/api/tutorials/vote', TutorialController.upvoteTutorial)
   app.get('/api/tutorials/:tutId', TutorialController.findTutorial)
+  app.get('/api/tutorials/find/:userId', TutorialController.findCreatedTutorial)
 
   // comment routes
   app.post('/api/comments', CommentController.saveComment)

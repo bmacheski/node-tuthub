@@ -8,6 +8,6 @@ div.row
       div.input-field.col.s12
         input(name="url" type="url" ng-model="newtut.tutorial.url" required)
         label(for="url") URL
-    select(material-select ng-model="newtut.tutorial.name")
+    select(material-select ng-model="newtut.tutorial.name" ng-init="newtut.tutorial[0]")
       option(ng-repeat="value in newtut.topics | orderBy: 'name'") {{value.name}}
   a.waves-effect.waves-light.btn(ng-click="newtut.saveTut()") Submit tutorial

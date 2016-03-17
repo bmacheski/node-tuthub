@@ -18,7 +18,7 @@ angular
             $cookies.username = username;
             cb();
           }, () => {
-            Materialize.toast('That username is already taken.', 3000)
+            Materialize.toast('That username is already taken.', 3000);
           })
       },
 
@@ -32,7 +32,7 @@ angular
             $cookies.username = username;
             cb();
           }, () => {
-            Materialize.toast('Authentication failure.', 3000)
+            Materialize.toast('Authentication failure.', 3000);
           })
       },
 

@@ -46,7 +46,7 @@ CommentController.deleteComment = (req, res) => {
           if (err) throw err
         })
     })
-  res.send('done')
+    res.sendStatus(200)
 }
 
 module.exports = CommentController

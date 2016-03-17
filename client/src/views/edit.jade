@@ -1,0 +1,18 @@
+h3 Profile
+
+h4 Tutorials created
+
+ul.collection
+  table.centered
+    thead
+      tr
+        th
+        th Title
+        th Source
+    tr.tutorial(ng-repeat="(id, tutorial) in edit.tutorials  | orderBy:'-count'")
+      td
+        a {{tutorial.name}}
+      td
+        p {{tutorial.domain}}
+      td
+        a Comments

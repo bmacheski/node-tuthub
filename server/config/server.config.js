@@ -6,7 +6,7 @@ const path       = require('path')
     , session    = require('express-session')
     , config     = require('./development.config')
 
-const SESSION_SECRET = process.env.SESSION_SECRET || 'supersecret'
+const secret = config.sessionSecret
 
 module.exports = (app, express) => {
 
@@ -14,7 +14,7 @@ module.exports = (app, express) => {
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(express.static(path.join(config.root, 'client/public')))
 
-  app.use(session({ secret: SESSION_SECRET, resave: true, saveUninitialized: false }))
+  app.use(session({ secret: secret, resave: true, saveUninitialized: false }))
   app.use(passport.initialize())
   app.use(passport.session())
 

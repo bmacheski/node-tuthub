@@ -29,6 +29,11 @@ angular
         controller: 'CommentsCtrl',
         controllerAs: 'comm'
       })
+      .when('/edit', {
+        templateUrl: 'views/edit.html',
+        controller: 'EditCtrl',
+        controllerAs: 'edit'
+      })
       .when('/tutorial/new', {
         templateUrl: 'views/newtutorial.html',
         controller: 'NewTutorialCtrl',
