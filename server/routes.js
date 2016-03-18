@@ -8,7 +8,6 @@ const TopicController    = require('./api/topic.controller')
     , passport           = require('passport')
 
 module.exports = app => {
-
   // topic routes
   app.get('/api/topics', TopicController.findAllTopics)
   app.post('/api/topics', TopicController.saveTopic)
@@ -16,6 +15,7 @@ module.exports = app => {
   // tutorial routes
   app.post('/api/tutorials', TutorialController.saveTutorial)
   app.post('/api/tutorials/vote', TutorialController.upvoteTutorial)
+  app.post('/api/tutorials/remove', TutorialController.removeTutorial)
   app.get('/api/tutorials/:tutId', TutorialController.findTutorial)
   app.get('/api/tutorials/find/:userId', TutorialController.findCreatedTutorial)
 

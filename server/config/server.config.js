@@ -9,7 +9,6 @@ const path       = require('path')
 const secret = config.sessionSecret;
 
 module.exports = (app, express) => {
-
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(express.static(path.join(config.root, 'client/public')));
@@ -20,4 +19,9 @@ module.exports = (app, express) => {
 
   require('../auth/passport')(passport);
   require('../routes')(app);
+
+  app.use(function(err, req, res, next) {
+    console.error(err);
+    res.status(500).send('server error');
+  })
 }

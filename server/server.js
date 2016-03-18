@@ -6,9 +6,7 @@ const express   = require('express')
     , config    = require('./config/development.config');
 
 mongoose.connect(config.dbUrl);
-mongoose.connection.on('error', (err) => {
-  console.log('Mongoose connection error: ' + err);
-});
+mongoose.connection.on('error', (err) => { console.log('Mongoose connection error: ' + err); });
 
 const port = process.env.PORT || 3000;
 const server = app.listen(port, () => console.log('✔ Server listening on port:', port));

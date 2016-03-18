@@ -67,6 +67,31 @@ angular
             createdTutorials = res.data;
             cb(createdTutorials);
           })
+      },
+
+      deleteTutorial(tutId, cb) {
+        let id = { tutId: tutId };
+        $http
+          .post('/api/tutorials/remove', id)
+          .then((res) => {
+            let topic = res.data.name;
+
+            if (tutorials[topic]) {
+              let tuts = tutorials[topic].map((t) => { return t._id });
+              let idx = tuts.indexOf(tutId);
+              let ctuts = createdTutorials.map((t) => { return t._id });
+              let cidx = ctuts.indexOf(tutId);
+
+              createdTutorials = [...createdTutorials.slice(0, cidx), ...createdTutorials.slice(cidx + 1)];
+
+              if (~~idx) {
+                tutorials[topic] = [...tutorials[topic].slice(0, idx), ...tutorials[topic].slice(idx + 1)];
+                cb(createdTutorials);
+              }
+            } else {
+              cb(createdTutorials);
+            }
+          })
       }
     }
   }

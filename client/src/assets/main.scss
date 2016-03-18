@@ -7,13 +7,6 @@
   margin-bottom: 15px !important;
 }
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
-
 .bk-src {
   width: 200px;
 }
@@ -26,7 +19,6 @@
 .count-row {
   text-align: center;
 }
-
 
 .del-button-td a {
   visibility: hidden;
@@ -50,17 +42,9 @@
   padding-right: 10px;
 }
 
-.delete {
-  margin-left: 10px;
-}
-
 .edit-delete-td {
   position: relative;
   left: 25px;
-}
-
-.holder {
-  margin-left:300px;
 }
 
 .home-title {
@@ -69,17 +53,6 @@
   position: absolute;
   left: 50%;
   opacity: .5;
-}
-
-.lang-avatar {
-  border-radius: none;
-  position: absolute;
-  width: 42px;
-  height: 42px;
-  overflow: hidden;
-  left: 15px;
-  display: inline-block;
-  vertical-align: middle;
 }
 
 .mdi-github-circle {
@@ -98,20 +71,13 @@ td {
   font-size: 16px;
 }
 
-.topicgallery img {
-  height: 90px;
+/* universal */
+
+.holder {
+  margin-left: 300px;
 }
 
-.topicgallery .topic {
-  width: 150px;
-  border: 1px solid grey;
-  border-radius: 3px;
-  padding-bottom: 15px;
-  text-align: center;
-  display:inline-block;
-  margin: 5px;
-  outline: 0;
-}
+/* navbar */
 
 .tuthub-logo {
   margin-left: 250px;
@@ -123,7 +89,21 @@ td {
   white-space: nowrap;
 }
 
+/* tutorial list view page */
+
 .upvote {
   display: inline;
+  margin-left: 10px;
+}
+
+/* create tutorial form */
+
+.tutform {
+  margin-top: 50px;
+}
+
+/* bookmark page */
+
+.delete {
   margin-left: 10px;
 }

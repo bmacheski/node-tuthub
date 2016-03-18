@@ -82,4 +82,16 @@ TutorialController.findCreatedTutorial = (req, res, next) => {
     })
 }
 
+TutorialController.removeTutorial = (req, res, next) => {
+  Tutorial
+    .findById(req.body.tutId)
+    .populate('topic', 'name')
+    .exec((err, tutorial) => {
+      let topic = tutorial.topic;
+      tutorial.remove();
+      tutorial.save();
+      res.status(200).send(topic);
+    })
+}
+
 module.exports = TutorialController;

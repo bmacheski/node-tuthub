@@ -6,6 +6,7 @@ angular
 
   function TutorialCtrl($routeParams, TutorialFactory, BookmarkFactory, AuthFactory) {
     let vm = this;
+
     vm.email = AuthFactory.getCurrentUserEmail();
 
     vm.currentTutorial = $routeParams.topicId;
