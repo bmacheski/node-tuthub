@@ -1,18 +1,20 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular
-  .module('tutHub')
-  .controller('RegisterCtrl', RegisterCtrl);
+  angular
+    .module('tutHub')
+    .controller('RegisterCtrl', RegisterCtrl);
 
-  function RegisterCtrl($http, AuthFactory, $location) {
-    let vm = this;
+    function RegisterCtrl($http, AuthFactory, $location) {
+      let vm = this;
 
-    vm.signup = function() {
-      let username = vm.info.username;
-      let password = vm.info.password;
+      vm.signup = function() {
+        let username = vm.info.username;
+        let password = vm.info.password;
 
-      AuthFactory.signup(username, password, function() {
-        $location.path('/');
-      })
+        AuthFactory.signup(username, password, function() {
+          $location.path('/');
+        })
+      }
     }
-  }
+})();

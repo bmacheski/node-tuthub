@@ -1,14 +1,15 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular
-  .module('tutHub')
-  .factory('AuthFactory', AuthFactory);
+  angular
+    .module('tutHub')
+    .factory('AuthFactory', AuthFactory);
 
-  function AuthFactory($http, $cookies, $rootScope) {
-    let user = {};
+    function AuthFactory($http, $cookies, $rootScope) {
+      let AuthFactoryObj = {};
+      let user = {};
 
-    return {
-      signup(username, password, cb) {
+      AuthFactoryObj.signup = function(username, password, cb) {
         let info = { username: username, password: password };
         $http
           .post('/register', info)
@@ -20,9 +21,9 @@ angular
           }, () => {
             Materialize.toast('That username is already taken.', 3000);
           })
-      },
+      }
 
-      login(email, password, cb) {
+      AuthFactoryObj.login = function(email, password, cb) {
         let info = { email: email, password: password };
         $http
           .post('/login', info)
@@ -34,9 +35,9 @@ angular
           }, () => {
             Materialize.toast('Authentication failure.', 3000);
           })
-      },
+      }
 
-      logout(cb) {
+      AuthFactoryObj.logout = function(cb) {
         $http
           .get('/logout')
           .then(() => {
@@ -45,14 +46,16 @@ angular
             delete $cookies.username;
             cb();
           })
-      },
+      }
 
-      checkLoggedIn() {
-        return $cookies.get('username');
-      },
-
-      getCurrentUserEmail() {
+      AuthFactoryObj.checkLoggedIn = function() {
         return $cookies.get('username');
       }
+
+      AuthFactoryObj.getCurrentUserEmail = function() {
+        return $cookies.get('username');
+      }
+
+      return AuthFactoryObj;
     }
-  }
+})();

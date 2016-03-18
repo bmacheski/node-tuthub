@@ -29,9 +29,10 @@ BookmarkController.saveBookmark = (req, res) => {
       if (user && user.bookmarks) {
         user.bookmarks.push(req.body.id);
         user.save();
+
         res.status(200).send({ message: 'bookmark saved' })
       } else {
-        res.send('woops');
+        res.send({ message: 'something went wrong.' });
       }
     })
 }
@@ -49,9 +50,10 @@ BookmarkController.deleteBookmark = (req, res) => {
 
         user.bookmarks.remove(user.bookmarks[idx]);
         user.save();
+
         res.status(200).send('deleted.');
       } else {
-        res.send('nope');
+        res.send({ message: 'something went wrong' });
       }
     })
 }

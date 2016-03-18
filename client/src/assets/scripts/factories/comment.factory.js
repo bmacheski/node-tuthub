@@ -1,15 +1,16 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular
-  .module('tutHub')
-  .factory('CommentFactory', CommentFactory);
+  angular
+    .module('tutHub')
+    .factory('CommentFactory', CommentFactory);
 
-  function CommentFactory($http) {
-    let comments = {}
-    let callStateObj = {};
+    function CommentFactory($http) {
+      let CommentFactoryObj = {};
+      let comments = {}
+      let callStateObj = {};
 
-    return {
-      saveComment(comment) {
+      CommentFactoryObj.saveComment = function(comment) {
         let topic = comment.topic;
         $http
           .post('/api/comments', comment)
@@ -23,11 +24,11 @@ angular
             }
             console.log(comments)
           })
-      },
+      }
 
-      getComments(id, cb) {
-        callStateObj[id] ?
-        cb(comments[id]) :
+      CommentFactoryObj.getComments = function(id, cb) {
+        callStateObj[id]
+        ? cb(comments[id]) :
         $http
           .get(`/api/comments/${id}`)
           .then((res) => {
@@ -35,9 +36,9 @@ angular
             comments[id] = res.data;
             cb(comments[id]);
           })
-      },
+      }
 
-      deleteComment(id, topic, cb) {
+      CommentFactoryObj.deleteComment = function(id, topic, cb) {
         $http
           .delete(`/api/comments/${topic}/${id}`)
           .then(() => {
@@ -47,5 +48,7 @@ angular
             cb(comments[topic]);
           })
       }
+
+      return CommentFactoryObj;
     }
-  }
+})();

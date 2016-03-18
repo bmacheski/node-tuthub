@@ -1,15 +1,16 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular
-  .module('tutHub')
-  .factory('BookmarkFactory', BookmarkFactory);
+  angular
+    .module('tutHub')
+    .factory('BookmarkFactory', BookmarkFactory);
 
-  function BookmarkFactory($http) {
-    let bookmarks = [];
-    let apiCallStatus = false;
+    function BookmarkFactory($http) {
+      let BookmarkFactoryObj = {};
+      let bookmarks = [];
+      let apiCallStatus = false;
 
-    return {
-      saveBookmark(id, username, obj, cb) {
+      BookmarkFactoryObj.saveBookmark = function(id, username, obj, cb) {
         let item = { id: id, username: username };
         $http
           .post('/api/bookmarks', item)
@@ -17,9 +18,9 @@ angular
             bookmarks.push(obj);
             cb(bookmarks)
           })
-      },
+      }
 
-      getBookmarks(username, cb) {
+      BookmarkFactoryObj.getBookmarks = function(username, cb) {
         return apiCallStatus ?
         cb(bookmarks) :
         $http
@@ -33,9 +34,9 @@ angular
               console.log('There are no bookmarks.');
             }
           })
-      },
+      }
 
-      deleteBookmark(user, id, cb) {
+      BookmarkFactoryObj.deleteBookmark = function(user, id, cb) {
         $http
           .delete(`/api/bookmarks/${user}/${id}`)
           .then((res) => {
@@ -45,5 +46,7 @@ angular
             cb(bookmarks);
           })
       }
+
+      return BookmarkFactoryObj;
     }
-  }
+})();

@@ -1,26 +1,29 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular
-  .module('tutHub')
-  .factory('TopicFactory', TopicFactory);
+  angular
+    .module('tutHub')
+    .factory('TopicFactory', TopicFactory);
 
-  function TopicFactory($http, $q) {
-    let topics;
+    function TopicFactory($http, $q) {
+      let TopicFactoryObj = {};
+      let topics;
 
-    return {
-      getAllTopics() {
-        return topics
-        ? $q.when(topics)
-        : $http
-          .get('/api/topics')
-          .then((res) => {
-            topics = res.data;
-            return topics;
-          })
-      },
+      TopicFactoryObj.getAllTopics = function() {
+          return topics
+          ? $q.when(topics)
+          : $http
+            .get('/api/topics')
+            .then((res) => {
+              topics = res.data;
+              return topics;
+            })
+        },
 
-      addTopic(topic) {
+      TopicFactoryObj.addTopic = function(topic) {
         topics.push(topic);
       }
+
+      return TopicFactoryObj;
     }
-  }
+})();

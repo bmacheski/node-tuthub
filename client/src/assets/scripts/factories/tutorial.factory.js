@@ -1,16 +1,17 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular
-  .module('tutHub')
-  .factory('TutorialFactory', TutorialFactory);
+  angular
+    .module('tutHub')
+    .factory('TutorialFactory', TutorialFactory);
 
-  function TutorialFactory($http) {
-    let tutorials = {};
-    let callStateObj = {};
-    let createdTutorials;
+    function TutorialFactory($http) {
+      let TutorialFactoryObj = {};
+      let tutorials = {};
+      let callStateObj = {};
+      let createdTutorials;
 
-    return {
-      getTutorials(topic, cb) {
+      TutorialFactoryObj.getTutorials = function(topic, cb) {
         return callStateObj[topic]
         ? cb(tutorials[topic]) :
         $http
@@ -20,10 +21,12 @@ angular
             tutorials[topic] = res.data;
             cb(tutorials[topic]);
           });
-      },
+      }
 
-      addTutorial(name, url, topic, domain, username, cb) {
-        let tutorialObj = { name: name, url: url, topic: topic, domain: domain, postedBy: username };
+      TutorialFactoryObj.addTutorial = function(name, url, topic, domain, username, cb) {
+        let tutorialObj = {
+          name: name, url: url, topic: topic, domain: domain, postedBy: username
+        };
 
         $http
           .post('/api/tutorials', tutorialObj)
@@ -42,7 +45,7 @@ angular
           });
       },
 
-      upVoteTutorial(id, topic, cb) {
+      TutorialFactoryObj.upVoteTutorial = function(id, topic, cb) {
         let obj = { id: id, topic: topic }
         $http
           .post('/api/tutorials/vote', obj)
@@ -53,9 +56,9 @@ angular
             tutorials[topic][idx]['voteCount'] = res.data.voteCount;
             cb(tutorials[topic]);
           })
-      },
+      }
 
-      findCreatedTutorials(username, cb) {
+      TutorialFactoryObj.findCreatedTutorials = function(username, cb) {
         createdTutorials
         ? cb(createdTutorials) :
         $http
@@ -64,9 +67,9 @@ angular
             createdTutorials = res.data ? res.data : [];
             cb(createdTutorials);
           })
-      },
+      }
 
-      deleteTutorial(tutId, cb) {
+      TutorialFactoryObj.deleteTutorial = function(tutId, cb) {
         let id = { tutId: tutId };
         $http
           .post('/api/tutorials/remove', id)
@@ -90,5 +93,7 @@ angular
             }
           })
       }
+
+      return TutorialFactoryObj;
     }
-  }
+})();
