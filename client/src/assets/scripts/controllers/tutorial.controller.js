@@ -15,7 +15,8 @@ angular
     }
 
     vm.addToBookmarks = function(id, name, url) {
-      let obj = { '_id': id, name: name, url: url };
+      let domain = url.split('/').filter((el) => { return el !== "" })[1]
+      let obj = { '_id': id, name: name, url: url, domain: domain };
 
       BookmarkFactory.saveBookmark(id, vm.email, obj, (bookmarks) => {
         vm.bIds = bookmarks.map((b) => { return b._id });

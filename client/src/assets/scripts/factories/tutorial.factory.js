@@ -17,7 +17,7 @@ angular
           .get(`/api/tutorials/${topic}`)
           .then((res) => {
             callStateObj[topic] = true;
-            tutorials[topic] = res.data
+            tutorials[topic] = res.data;
             cb(tutorials[topic]);
           });
       },
@@ -63,7 +63,7 @@ angular
           .get(`/api/tutorials/find/${username}`)
           .then((res) => {
             createdTutorials = res.data;
-            cb(createdTutorials)
+            cb(createdTutorials);
           })
       }
     }

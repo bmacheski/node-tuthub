@@ -6,10 +6,12 @@ ul.collection(ng-show="bookmark.bookmarks.length !== 0")
     thead
       tr
         th Title
-      tr
+        th Domain
     tr(ng-repeat="(id, b) in bookmark.bookmarks")
       td
         a(target="_blank" ng-href="{{b.url}}") {{b.name}}
+      td
+        p {{b.domain}}
       td
         i.zmdi.zmdi-delete.zmdi-hc-lg(ng-click="bookmark.removeBookmark(b._id)" icon="delete")
 

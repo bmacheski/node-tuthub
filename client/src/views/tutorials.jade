@@ -19,7 +19,7 @@ ul.collection(ng-show="tut.tutorials.length !== 0")
       td
         p {{tutorial.domain}}
       td
-        p {{tutorial.postedBy}}
+        p {{tutorial.postedBy.username}}
       td
         a(ng-href="#/topic/{{tutorial._id}}/comments") Comments
       td.bookmark-td(ng-click="tut.addToBookmarks(tutorial._id, tutorial.name, tutorial.url)")
