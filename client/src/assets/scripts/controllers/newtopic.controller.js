@@ -5,7 +5,7 @@ angular
   .controller('NewTopicCtrl', NewTopicCtrl);
 
   function NewTopicCtrl(TopicFactory, $http, $scope) {
-    var vm = this;
+    let vm = this;
 
     vm.saveTopic = function() {
       let topic = { name: vm.topic.name };

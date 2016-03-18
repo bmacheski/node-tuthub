@@ -5,7 +5,7 @@ angular
   .controller('AuthCtrl', AuthCtrl);
 
   function AuthCtrl(AuthFactory, $location) {
-    var vm = this;
+    let vm = this;
 
     vm.login = function() {
       let username = vm.info.username;

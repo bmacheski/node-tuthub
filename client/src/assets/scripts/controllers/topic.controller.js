@@ -5,7 +5,7 @@ angular
   .controller('TopicCtrl', TopicCtrl);
 
   function TopicCtrl(TopicFactory, $http, $location) {
-    var vm = this;
+    let vm = this;
 
     TopicFactory
       .getAllTopics()

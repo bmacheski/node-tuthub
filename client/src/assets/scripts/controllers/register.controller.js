@@ -5,7 +5,7 @@ angular
   .controller('RegisterCtrl', RegisterCtrl);
 
   function RegisterCtrl($http, AuthFactory, $location) {
-    var vm = this;
+    let vm = this;
 
     vm.signup = function() {
       let username = vm.info.username;

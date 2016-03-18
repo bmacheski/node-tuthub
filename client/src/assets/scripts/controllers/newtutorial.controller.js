@@ -20,12 +20,13 @@ angular
       let url = vm.tutorial.url;
 
       if (topic && name && url) {
-        let domain = url.split('/').filter((el) => { return el !== "" })[1]
+        let domain = url.split('/').filter((el) => { return el !== "" })[1];
+
         TutorialFactory.addTutorial(name, url, topic, domain, username, () => {
           $location.path(`/topic/${topic}`);
         })
       } else {
-        Materialize.toast('All fields must be filled out.', 2000)
+        Materialize.toast('All fields must be filled out.', 2000);
       }
     }
   }

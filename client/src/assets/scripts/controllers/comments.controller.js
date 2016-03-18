@@ -8,7 +8,7 @@ angular
     let vm = this;
     let topic = $routeParams.topicId;
 
-    vm.username = AuthFactory.getCurrentUserEmail()
+    vm.username = AuthFactory.getCurrentUserEmail();
     CommentFactory.getComments(topic, (comments) => {
       vm.comments = comments;
     })
@@ -20,7 +20,7 @@ angular
     vm.postComment = function() {
       let comment = { topic: topic, author: vm.username, comment: vm.commentMessage };
       CommentFactory.saveComment(comment);
-      vm.commentMessage = ''
+      vm.commentMessage = '';
     }
 
     vm.removeComment = function(id) {

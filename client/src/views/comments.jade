@@ -22,7 +22,7 @@ ul.collection
         em  {{comment.author}}
     a.secondary-content(ng-show="comm.username === comment.author" ng-click="comm.removeComment(comment._id)") Remove
 div.row
-  form.col.s12
+  form.col.s12(ng-show="loggedIn")
     div.row
       div(class="input-field col s12")
         textarea#textarea.materialize-textarea(ng-model="comm.commentMessage")

@@ -8,7 +8,6 @@ angular
     let vm = this;
 
     vm.email = AuthFactory.getCurrentUserEmail();
-
     vm.currentTutorial = $routeParams.topicId;
 
     vm.go = function() {
@@ -16,7 +15,7 @@ angular
     }
 
     vm.addToBookmarks = function(id, name, url) {
-      let domain = url.split('/').filter((el) => { return el !== "" })[1]
+      let domain = url.split('/').filter((el) => { return el !== "" })[1];
       let obj = { '_id': id, name: name, url: url, domain: domain };
 
       BookmarkFactory.saveBookmark(id, vm.email, obj, (bookmarks) => {

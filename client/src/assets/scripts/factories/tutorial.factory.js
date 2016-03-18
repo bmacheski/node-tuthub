@@ -23,13 +23,8 @@ angular
       },
 
       addTutorial(name, url, topic, domain, username, cb) {
-        let tutorialObj = {
-          name: name,
-          url: url,
-          topic: topic,
-          domain: domain,
-          postedBy: username
-        };
+        let tutorialObj = { name: name, url: url, topic: topic, domain: domain, postedBy: username };
+
         $http
           .post('/api/tutorials', tutorialObj)
           .then((res) => {
@@ -41,6 +36,7 @@ angular
               tutorialObj['_id'] = res.data.id;
               tutorials[topic] = [tutorialObj];
             }
+            createdTutorials.push(tutorialObj);
             Materialize.toast('Tutorial saved!', 3000);
             cb();
           });
@@ -53,6 +49,7 @@ angular
           .then((res) => {
             let t = tutorials[topic].map((tut) => { return tut._id });
             let idx = t.indexOf(id);
+
             tutorials[topic][idx]['voteCount'] = res.data.voteCount;
             cb(tutorials[topic]);
           })
@@ -64,7 +61,7 @@ angular
         $http
           .get(`/api/tutorials/find/${username}`)
           .then((res) => {
-            createdTutorials = res.data;
+            createdTutorials = res.data ? res.data : [];
             cb(createdTutorials);
           })
       },
@@ -75,14 +72,14 @@ angular
           .post('/api/tutorials/remove', id)
           .then((res) => {
             let topic = res.data.name;
+            let ctuts = createdTutorials.map((t) => { return t._id });
+            let cidx = ctuts.indexOf(tutId);
+
+            createdTutorials = [...createdTutorials.slice(0, cidx), ...createdTutorials.slice(cidx + 1)];
 
             if (tutorials[topic]) {
               let tuts = tutorials[topic].map((t) => { return t._id });
               let idx = tuts.indexOf(tutId);
-              let ctuts = createdTutorials.map((t) => { return t._id });
-              let cidx = ctuts.indexOf(tutId);
-
-              createdTutorials = [...createdTutorials.slice(0, cidx), ...createdTutorials.slice(cidx + 1)];
 
               if (~~idx) {
                 tutorials[topic] = [...tutorials[topic].slice(0, idx), ...tutorials[topic].slice(idx + 1)];

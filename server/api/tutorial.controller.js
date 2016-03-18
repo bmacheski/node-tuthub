@@ -37,8 +37,6 @@ TutorialController.saveTutorial = (req, res, next) => {
 }
 
 TutorialController.findTutorial = (req, res, next) => {
-  // TODO: currently getting name of tutorial -- need to use only ID
-  // to eliminate unnecessary topic query
   Topic
     .findOne({ name: req.params.tutId })
     .exec((err, topic) => {
@@ -88,6 +86,7 @@ TutorialController.removeTutorial = (req, res, next) => {
     .populate('topic', 'name')
     .exec((err, tutorial) => {
       let topic = tutorial.topic;
+
       tutorial.remove();
       tutorial.save();
       res.status(200).send(topic);
