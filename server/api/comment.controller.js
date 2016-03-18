@@ -1,52 +1,59 @@
-'use strict'
+'use strict';
 
 const Comment  = require('../models/comment.model')
-    , Tutorial = require('../models/tutorial.model')
+    , Tutorial = require('../models/tutorial.model');
 
-const CommentController = {}
+const CommentController = {};
 
-CommentController.findComment = (req, res) => {
+CommentController.findComment = (req, res, next) => {
   Tutorial
     .findById(req.params.tutId)
     .populate('comments')
     .exec((err, tutorials) => {
-      if (err) throw err
+      if (err) return next(err);
+
       if (tutorials.comments) {
-        res.send(tutorials.comments)
+        res.status(200).send(tutorials.comments);
+      } else {
+        res.send('No comments found.');
       }
-      else res.send('There arent any comments')
     })
 }
 
-CommentController.saveComment = (req, res) => {
+CommentController.saveComment = (req, res, next) => {
   Tutorial
     .findById(req.body.topic)
     .exec((err, tutorial) => {
+      if (err) return next(err);
+
       let comment = new Comment({
         comment: req.body.comment,
         author: req.body.author
       })
-      comment.save()
-      tutorial.comments.push(comment._id)
-      tutorial.save()
-      res.send(comment._id)
+
+      comment.save();
+      tutorial.comments.push(comment._id);
+      tutorial.save();
+      res.status(200).send(comment._id);
     })
 }
 
-CommentController.deleteComment = (req, res) => {
+CommentController.deleteComment = (req, res, next) => {
   Tutorial
     .findById(req.params.tutId)
     .populate('comments')
     .exec((err, tutorials) => {
-      tutorials.comments.remove(req.params.commentId)
-      tutorials.save()
+      if (err) return next(err);
+
+      tutorials.comments.remove(req.params.commentId);
+      tutorials.save();
 
       Comment.findByIdAndRemove(req.params.commentId,
         (err, comment) => {
-          if (err) throw err
+          if (err) return next(err);
         })
     })
-    res.sendStatus(200)
+    res.sendStatus(200);
 }
 
-module.exports = CommentController
+module.exports = CommentController;

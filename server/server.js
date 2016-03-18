@@ -1,13 +1,16 @@
-'use strict'
+'use strict';
 
 const express   = require('express')
     , mongoose  = require('mongoose')
     , app       = express()
-    , config    = require('./config/development.config')
+    , config    = require('./config/development.config');
 
-mongoose.connect(config.dbUrl)
+mongoose.connect(config.dbUrl);
+mongoose.connection.on('error', (err) => {
+  console.log('Mongoose connection error: ' + err);
+});
 
-const port = process.env.PORT || 3000
-const server = app.listen(port, () => console.log('✔ Server listening on port:', port))
+const port = process.env.PORT || 3000;
+const server = app.listen(port, () => console.log('✔ Server listening on port:', port));
 
-require('./config/server.config.js')(app, express)
+require('./config/server.config.js')(app, express);

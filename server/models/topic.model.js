@@ -1,13 +1,9 @@
-'use strict'
+'use strict';
 
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const TopicSchema = new mongoose.Schema({
-  name: String,
-  tutorials: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Tutorial'
-  }]
+  name: String
 })
 
-module.exports = mongoose.model('Topic', TopicSchema)
+module.exports = mongoose.model('Topic', TopicSchema);

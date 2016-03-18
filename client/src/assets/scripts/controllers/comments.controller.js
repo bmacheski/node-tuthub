@@ -13,9 +13,9 @@ angular
       vm.comments = comments;
     })
 
-    TutorialFactory.getTutorials(topic, (tuts) => {
-      vm.tutorials = tuts;
-    });
+    // TutorialFactory.getTutorials(topic, (tuts) => {
+    //   vm.tutorials = tuts;
+    // });
 
     vm.postComment = function() {
       let comment = { topic: topic, author: vm.username, comment: vm.commentMessage };

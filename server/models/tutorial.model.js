@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const TutorialSchema = new mongoose.Schema({
   name: String,
@@ -21,4 +21,4 @@ const TutorialSchema = new mongoose.Schema({
   }]
 })
 
-module.exports = mongoose.model('Tutorial', TutorialSchema)
+module.exports = mongoose.model('Tutorial', TutorialSchema);

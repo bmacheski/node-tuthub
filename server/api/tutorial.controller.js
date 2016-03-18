@@ -1,19 +1,22 @@
-'use strict'
+'use strict';
 
 const Tutorial  = require('../models/tutorial.model')
     , Topic     = require('../models/topic.model')
-    , User      = require('../models/user.model')
+    , User      = require('../models/user.model');
 
-const TutorialController = {}
+const TutorialController = {};
 
-TutorialController.saveTutorial = (req, res) => {
+TutorialController.saveTutorial = (req, res, next) => {
   User
     .findOne({ username: req.body.postedBy })
     .exec((err, user) => {
+      if (err) return next(err);
+
       Topic
         .findOne({ 'name': req.body.topic })
         .exec((err, topic) => {
-          if (err) throw err
+          if (err) throw err;
+
           if (topic) {
             let tut = new Tutorial({
               name: req.body.name,
@@ -22,71 +25,61 @@ TutorialController.saveTutorial = (req, res) => {
               postedBy: user._id,
               topic: topic._id
             })
-            tut.save()
-            topic.tutorials.push(tut._id)
-            topic.save()
-            // user.tutorialsCreated.push(tut._id)
-            // user.save()
-            res.status(200).send({ id: tut._id })
+
+            tut.save();
+            res.status(200).send({ id: tut._id });
           } else {
-            let newTopic = new Topic({ name: req.body.topic })
-            newTopic.save()
+            let newTopic = new Topic({ name: req.body.topic });
+            newTopic.save();
           }
         })
     })
 }
 
-TutorialController.findTutorial = (req, res) => {
+TutorialController.findTutorial = (req, res, next) => {
+  // TODO: currently getting name of tutorial -- need to use only ID
+  // to eliminate unnecessary topic query
   Topic
     .findOne({ name: req.params.tutId })
-    .populate({
-      path: 'tutorials',
-      populate: {
-        path: 'postedBy',
-        model: 'User',
-        select: 'username'
-      }
-    })
-    .exec((err, posts) => {
-      if (err) throw err
-      if (posts) {
-        let t = posts.tutorials.map((p) => {
-         return {
-          _id : p._id,
-          categoryName: posts.name,
-          comments : p.comments,
-          domain: p.domain,
-          name: p.name,
-          postedBy: p.postedBy,
-          url: p.url,
-          voteCount: p.voteCount
-         }
+    .exec((err, topic) => {
+      if (err) return next(err);
+
+      Tutorial
+        .find({ topic: topic._id })
+        .populate('postedBy', 'username')
+        .populate('comments')
+        .exec((err, tuts) => {
+          if (err) return next(err);
+
+          res.status(200).send(tuts);
         })
-        res.status(200).send(t)
-      }
     })
 }
 
-TutorialController.upvoteTutorial = (req, res) => {
+TutorialController.upvoteTutorial = (req, res, next) => {
   Tutorial
     .findById(req.body.id)
     .exec((err, tutorial) => {
-      tutorial.voteCount++
-      tutorial.save()
-      res.status(200).send(tutorial)
+      if (err) return next(err);
+
+      tutorial.voteCount++;
+      tutorial.save();
+      res.status(200).send(tutorial);
     })
 }
 
-TutorialController.findCreatedTutorial = (req, res) => {
+TutorialController.findCreatedTutorial = (req, res, next) => {
   User
     .findOne({ username: req.params.userId })
     .exec((err, user) => {
+      if (err) return next(err);
+
       Tutorial
         .find({ postedBy: user._id })
         .exec((err, tutorial) => {
-          res.send(tutorial)
+          res.send(tutorial);
         })
     })
 }
 
-module.exports = TutorialController
+module.exports = TutorialController;

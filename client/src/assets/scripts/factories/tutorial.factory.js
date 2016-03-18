@@ -11,8 +11,8 @@ angular
 
     return {
       getTutorials(topic, cb) {
-        return callStateObj[topic] ?
-        cb(tutorials[topic]) :
+        return callStateObj[topic]
+        ? cb(tutorials[topic]) :
         $http
           .get(`/api/tutorials/${topic}`)
           .then((res) => {
@@ -59,6 +59,8 @@ angular
       },
 
       findCreatedTutorials(username, cb) {
+        createdTutorials
+        ? cb(createdTutorials) :
         $http
           .get(`/api/tutorials/find/${username}`)
           .then((res) => {
