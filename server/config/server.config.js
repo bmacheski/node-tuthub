@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const path       = require('path')
     , bodyParser = require('body-parser')
@@ -23,5 +23,5 @@ module.exports = (app, express) => {
   app.use(function(err, req, res, next) {
     console.error(err);
     res.status(500).send('server error');
-  })
+  });
 }

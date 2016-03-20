@@ -98,12 +98,19 @@ td {
 
 /* create tutorial form */
 
-.tutform {
-  margin-top: 50px;
+.tutform, .comments-container {
+  margin-top: 50px !important;
 }
 
 /* bookmark page */
 
 .delete {
   margin-left: 10px;
+}
+
+/* topics list */
+
+.topics {
+  font-size: 18px;
+  font-weight: 400;
 }

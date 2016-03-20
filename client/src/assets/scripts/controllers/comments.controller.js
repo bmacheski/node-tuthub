@@ -9,14 +9,16 @@
       let vm = this;
       let topic = $routeParams.topicId;
 
+      vm.topic = $routeParams.topic;
       vm.username = AuthFactory.getCurrentUserEmail();
       CommentFactory.getComments(topic, (comments) => {
         vm.comments = comments;
       })
 
-      // TutorialFactory.getTutorials(topic, (tuts) => {
-      //   vm.tutorials = tuts;
-      // });
+      TutorialFactory.getTutorials(vm.topic, (tuts) => {
+        let idx = tuts.map((t) => { return t._id }).indexOf(topic)
+        vm.tutorial = tuts[idx];
+      });
 
       vm.postComment = function() {
         let comment = { topic: topic, author: vm.username, comment: vm.commentMessage };

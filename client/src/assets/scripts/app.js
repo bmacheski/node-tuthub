@@ -25,7 +25,7 @@
           controller: 'TutorialCtrl',
           controllerAs: 'tut'
         })
-        .when('/topic/:topicId/comments', {
+        .when('/topic/:topic/:topicId/comments', {
           templateUrl: 'views/comments.html',
           controller: 'CommentsCtrl',
           controllerAs: 'comm'

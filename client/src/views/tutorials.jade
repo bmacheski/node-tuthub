@@ -22,6 +22,6 @@ ul.collection(ng-show="tut.tutorials.length !== 0")
       td
         p {{tutorial.postedBy.username}}
       td
-        a(ng-href="#/topic/{{tutorial._id}}/comments") Comments
+        a(ng-href="#/topic/{{tut.currentTutorial}}/{{tutorial._id}}/comments") Comments
       td.bookmark-td(ng-show="loggedIn" ng-click="tut.addToBookmarks(tutorial._id, tutorial.name, tutorial.url)")
         i(ng-class="{ 'zmdi zmdi-bookmark-outline zmdi-hc-lg' : tut.bIds.indexOf(tutorial._id) === -1 , 'zmdi zmdi-bookmark zmdi-hc-lg' : tut.bIds.indexOf(tutorial._id) !== -1 }")

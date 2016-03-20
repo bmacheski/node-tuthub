@@ -46,7 +46,7 @@
       },
 
       TutorialFactoryObj.upVoteTutorial = function(id, topic, cb) {
-        let obj = { id: id, topic: topic }
+        let obj = { id: id, topic: topic };
         $http
           .post('/api/tutorials/vote', obj)
           .then((res) => {
@@ -70,9 +70,8 @@
       }
 
       TutorialFactoryObj.deleteTutorial = function(tutId, cb) {
-        let id = { tutId: tutId };
         $http
-          .post('/api/tutorials/remove', id)
+          .post('/api/tutorials/remove', { tutId: tutId })
           .then((res) => {
             let topic = res.data.name;
             let ctuts = createdTutorials.map((t) => { return t._id });
@@ -88,9 +87,7 @@
                 tutorials[topic] = [...tutorials[topic].slice(0, idx), ...tutorials[topic].slice(idx + 1)];
                 cb(createdTutorials);
               }
-            } else {
-              cb(createdTutorials);
-            }
+            } else { cb(createdTutorials); }
           })
       }
 

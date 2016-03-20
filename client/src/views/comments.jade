@@ -1,17 +1,17 @@
-ul.collection
+ul.collection.comments-container
   table
     thead
       tr
         th
         th Title
         th Source
-        th
-        th
+        th Poster
     tr
       td
       td
-        a(target="_blank" ng-href="{{comm.commentView.URL}}") {{comm.commentView.title}}
-      td {{comm.commentView.type}}
+        a(target="_blank" ng-href="{{comm.tutorial.url}}") {{comm.tutorial.name}}
+      td {{comm.tutorial.domain}}
+      td {{comm.tutorial.postedBy.username}}
 
 h5 Comments
 ul.collection

@@ -30,7 +30,7 @@ BookmarkController.saveBookmark = (req, res) => {
         user.bookmarks.push(req.body.id);
         user.save();
 
-        res.status(200).send({ message: 'bookmark saved' })
+        res.status(200).send({ message: 'bookmark saved' });
       } else {
         res.send({ message: 'something went wrong.' });
       }
