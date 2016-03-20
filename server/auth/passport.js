@@ -21,10 +21,12 @@ module.exports = (passport) => {
       User
         .findOne({ username: username }, (err, user) => {
           if (err) { return done(err); }
+
           if (user) {
             user.validatePassword(password, (err, valid) => {
               if (err) { return done(err); }
               if (valid) { return done(null, user); }
+
               else { done(); }
             })
           } else { done(); }

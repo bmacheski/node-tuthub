@@ -6,12 +6,12 @@ const AuthController = {};
 
 AuthController.login = (req, res) => {
   res.cookie('username', req.body.username);
-  res.send({ message: 'Login success.' });
+  res.sendStatus(200);
 }
 
 AuthController.logout = (req, res) => {
   req.session.regenerate(function(err) {
-    if (err) throw err
+    if (err) { return done(err); }
 
     else {
       res.clearCookie('username');
@@ -36,4 +36,4 @@ AuthController.register = (req, res) => {
   })
 }
 
-module.exports = AuthController
+module.exports = AuthController;
