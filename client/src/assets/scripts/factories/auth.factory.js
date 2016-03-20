@@ -23,8 +23,8 @@
           })
       }
 
-      AuthFactoryObj.login = function(email, password, cb) {
-        let info = { email: email, password: password };
+      AuthFactoryObj.login = function(username, password, cb) {
+        let info = { username: username, password: password };
         $http
           .post('/login', info)
           .then(() => {

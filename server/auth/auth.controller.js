@@ -1,35 +1,38 @@
-'use strict'
+'use strict';
 
-const User = require('../models/user.model')
+const User = require('../models/user.model');
 
-const AuthController = {}
+const AuthController = {};
 
 AuthController.login = (req, res) => {
-  res.cookie('username', req.body.username)
-  res.send({ message: 'Login success.' })
+  res.cookie('username', req.body.username);
+  res.send({ message: 'Login success.' });
 }
 
 AuthController.logout = (req, res) => {
   req.session.regenerate(function(err) {
     if (err) throw err
+
     else {
-      res.clearCookie('username')
-      res.send({ message: 'Logout successful.' })
+      res.clearCookie('username');
+      res.send({ message: 'Logout successful.' });
     }
   })
 }
 
 AuthController.register = (req, res) => {
-  User.findOne({ username: req.body.username }, (err, user) => {
-    if (err) throw err
-    if (user) { res.sendStatus(403) }
-    else {
-      User.create(req.body, (err) => {
-        if (err) throw err
-        res.cookie('username', req.body.username)
-        res.send({ message: 'User registered succesfully.' })
-      })
-    }
+  User
+    .findOne({ username: req.body.username }, (err, user) => {
+      if (err) { return done(err); }
+      if (user) { res.sendStatus(403); }
+      else {
+        User
+          .create(req.body, (err) => {
+            if (err) { return done(err); }
+            res.cookie('username', req.body.username);
+            res.send({ message: 'User registered succesfully.' });
+          })
+      }
   })
 }
 
