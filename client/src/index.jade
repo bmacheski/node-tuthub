@@ -6,8 +6,8 @@ html(lang="en")
     link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css")
 
   body(ng-app="tutHub")
-    section(ng-include="'views/navbar.html'", ng-controller="AuthCtrl as auth")
-    section(ng-include="'views/topics.html'", ng-controller="TopicCtrl as topic")
+    nav-bar
+    topic-list
     div.container.holder
         div(ng-view)
 
@@ -37,3 +37,7 @@ html(lang="en")
     script(src="assets/scripts/factories/comment.factory.js")
     script(src="assets/scripts/factories/topic.factory.js")
     script(src="assets/scripts/factories/tutorial.factory.js")
+
+    <!--directives-->
+    script(src="assets/scripts/directives/navbar.directive.js")
+    script(src="assets/scripts/directives/topiclist.directive.js")
