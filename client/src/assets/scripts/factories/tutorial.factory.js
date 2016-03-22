@@ -39,6 +39,7 @@
               tutorialObj['_id'] = res.data.id;
               tutorials[topic] = [tutorialObj];
             }
+
             createdTutorials.push(tutorialObj);
             Materialize.toast('Tutorial saved!', 3000);
             cb();

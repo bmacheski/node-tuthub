@@ -3,6 +3,5 @@ form(name="topicform" novalidate)
   div.form-group
     label.control-label Topic
     input.form-control(type="text" name="title" ng-model="newtopic.topic.name" required)
-    span(ng-show="topicform.title.$touched && topicform.title.$invalid") A title is required.
   button.btn.btn-primary(ng-click="newtopic.saveTopic()" ng-disabled="topicform.$invalid") Submit
   button.btn.btn-danger(ng-click="newtopic.goback()") Cancel

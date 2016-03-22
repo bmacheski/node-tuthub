@@ -14,6 +14,7 @@
           .post('/api/topics', topic)
           .then(function() {
             TopicFactory.addTopic(topic)
+            vm.topic.name = '';
           })
       }
     }
