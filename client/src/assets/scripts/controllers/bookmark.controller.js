@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('tutHub')
+    .module('controllers')
     .controller('BookmarkCtrl', BookmarkCtrl);
 
     function BookmarkCtrl(BookmarkFactory, AuthFactory) {

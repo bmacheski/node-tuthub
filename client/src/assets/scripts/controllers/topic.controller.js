@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('tutHub')
+    .module('controllers')
     .controller('TopicCtrl', TopicCtrl);
 
     function TopicCtrl(TopicFactory, $http, $location) {

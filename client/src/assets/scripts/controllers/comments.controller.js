@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('tutHub')
+    .module('controllers')
     .controller('CommentsCtrl', CommentsCtrl);
 
     function CommentsCtrl(CommentFactory, AuthFactory, TutorialFactory, $routeParams) {

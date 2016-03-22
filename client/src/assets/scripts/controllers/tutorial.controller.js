@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('tutHub')
+    .module('controllers')
     .controller('TutorialCtrl', TutorialCtrl);
 
     function TutorialCtrl($routeParams, TutorialFactory, BookmarkFactory, AuthFactory) {

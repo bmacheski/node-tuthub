@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('tutHub')
+    .module('services')
     .factory('TopicFactory', TopicFactory);
 
     function TopicFactory($http, $q) {

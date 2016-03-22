@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('tutHub')
+    .module('services')
     .factory('BookmarkFactory', BookmarkFactory);
 
     function BookmarkFactory($http) {

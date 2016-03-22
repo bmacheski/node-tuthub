@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('tutHub')
+    .module('controllers')
     .controller('EditCtrl', EditCtrl);
 
     function EditCtrl(TutorialFactory, AuthFactory) {

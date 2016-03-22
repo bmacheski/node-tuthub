@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('tutHub')
+    .module('services')
     .factory('CommentFactory', CommentFactory);
 
     function CommentFactory($http) {

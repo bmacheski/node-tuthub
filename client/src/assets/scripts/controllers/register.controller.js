@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('tutHub')
+    .module('controllers')
     .controller('RegisterCtrl', RegisterCtrl);
 
     function RegisterCtrl($http, AuthFactory, $location) {

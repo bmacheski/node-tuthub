@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('tutHub')
+    .module('directives')
     .directive('topicList', topicList);
 
     function topicList() {

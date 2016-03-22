@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('tutHub')
+    .module('services')
     .factory('AuthFactory', AuthFactory);
 
     function AuthFactory($http, $cookies, $rootScope) {
