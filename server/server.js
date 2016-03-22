@@ -3,9 +3,9 @@
 const express   = require('express')
     , mongoose  = require('mongoose')
     , app       = express()
-    , config    = require('./config/development.config');
+    , config    = require('./config/environment')();
 
-mongoose.connect(config.dbUrl);
+mongoose.connect(config.mongo.url);
 mongoose.connection.on('error', (err) => console.log('Mongoose connection error:' + err));
 
 const port = process.env.PORT || 3000;

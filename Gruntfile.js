@@ -13,7 +13,7 @@ module.exports = function (grunt) {
     babel: {
       dev: {
         options: {
-          sourceMap: 'inline'
+          sourceMap: 'true'
         },
         files: [
           {
@@ -28,9 +28,9 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: 'src/',
+            cwd: 'client/src/',
             src: ['**/*.js'],
-            dest: 'public/'
+            dest: 'client/public/'
           }
         ]
       }
@@ -94,7 +94,7 @@ module.exports = function (grunt) {
             expand: true,
             cwd: 'client/src/',
             src: ['**/*.jade', '!**/_*.jade'],
-            dest: 'public/',
+            dest: 'client/public/',
             ext: '.html'
           }
         ]
@@ -119,21 +119,28 @@ module.exports = function (grunt) {
         }
       }
     },
+    ngAnnotate: {
+      options: {
+          singleQuotes: true
+      },
+      app: {
+          files: [{
+            expand: true,
+            src: ['client/public/assets/scripts/*.js', 'client/public/assets/scripts/**/*.js']
+        }]
+      }
+    },
+    concat: {
+      js: {
+        src: ['client/public/assets/scripts/*.js', 'client/public/assets/scripts/**/*.js'],
+        dest: 'client/public/app.min.js'
+      }
+    },
     uglify: {
       bower: {
         files: {
-          'public/lib/build.js': 'public/lib/build.js'
+          'client/public/lib/build.js': 'client/public/lib/build.js'
         }
-      },
-      main: {
-        files: [
-          {
-            expand: true,
-            cwd: 'client/public/',
-            src: ['**/*.js'],
-            dest: 'client/public/'
-          }
-        ]
       }
     },
     watch: {
@@ -168,12 +175,12 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean',
     'copy',
-    'babel:prod',
+    'babel:dev',
     'bower_concat',
     'jade:prod',
     'sass:prod',
-    'uglify',
-    'cssmin'
+    'concat',
+    'uglify'
   ]);
   grunt.registerTask('build-dev', [
     'clean',
@@ -188,4 +195,4 @@ module.exports = function (grunt) {
     'build-dev',
     'watch'
   ]);
-};
+}
