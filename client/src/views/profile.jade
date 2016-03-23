@@ -1,0 +1,26 @@
+h3 Profile
+
+div(ng-if="profile.tutorials.length == 0")
+  h3 You haven't created any tutorials.
+
+div(ng-show="profile.tutorials.length !== 0")
+  h4 Tutorials created
+  ul.collection
+    table.centered
+      thead
+        tr
+          th
+          th Title
+          th Source
+          th
+      tr.tutorial(ng-repeat="(id, tutorial) in profile.tutorials  | orderBy:'-count'")
+        td
+          a {{tutorial.name}}
+        td
+          p {{tutorial.domain}}
+        td
+          a Comments
+        td
+          a.waves-effect.waves-light.btn(ng-href="#/profile/{{tutorial.topic.name}}/{{tutorial._id}}") Edit
+          a.waves-effect.waves-light.btn.delete-btn(ng-click="profile.deleteTut(tutorial._id)") Delete
+

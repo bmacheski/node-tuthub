@@ -1,25 +1,13 @@
-h3 Profile
+h3 Edit
 
-div(ng-if="edit.tutorials.length == 0")
-  h3 You haven't created any tutorials.
-
-div(ng-show="edit.tutorials.length !== 0")
-  h4 Tutorials created
-  ul.collection
-    table.centered
-      thead
-        tr
-          th
-          th Title
-          th Source
-          th
-      tr.tutorial(ng-repeat="(id, tutorial) in edit.tutorials  | orderBy:'-count'")
-        td
-          a {{tutorial.name}}
-        td
-          p {{tutorial.domain}}
-        td
-          a Comments
-        td
-          a.waves-effect.waves-light.btn(ng-click="edit.deleteTut(tutorial._id)") Delete
-
+div.row
+  form.col.s12.tutform(name="tutform" novalidate)
+    div.row
+      div.input-field.col.s12
+        input(name="title" type="text" ng-model="edit.tutorial.name" required)
+        label(for="title") Title
+    div.row
+      div.input-field.col.s12
+        input(name="url" type="url" ng-model="edit.tutorial.url" required)
+        label(for="url") URL
+  a.waves-effect.waves-light.btn(ng-click="edit.updateTutorial()") Submit updated tutorial

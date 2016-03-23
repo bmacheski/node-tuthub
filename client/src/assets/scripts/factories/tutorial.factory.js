@@ -7,6 +7,7 @@
 
     function TutorialFactory($http) {
       let TutorialFactoryObj = {};
+
       let tutorials = {};
       let callStateObj = {};
       let createdTutorials;
@@ -19,6 +20,7 @@
           .then((res) => {
             callStateObj[topic] = true;
             tutorials[topic] = res.data;
+
             cb(tutorials[topic]);
           });
       }
@@ -40,7 +42,9 @@
               tutorials[topic] = [tutorialObj];
             }
 
+            Array.isArray(createdTutorials) ? createdTutorials = createdTutorials : createdTutorials = []
             createdTutorials.push(tutorialObj);
+
             Materialize.toast('Tutorial saved!', 3000);
             cb();
           });
@@ -55,6 +59,7 @@
             let idx = t.indexOf(id);
 
             tutorials[topic][idx]['voteCount'] = res.data.voteCount;
+
             cb(tutorials[topic]);
           })
       }
@@ -66,6 +71,7 @@
           .get(`/api/tutorials/find/${username}`)
           .then((res) => {
             createdTutorials = res.data ? res.data : [];
+
             cb(createdTutorials);
           })
       }
@@ -89,6 +95,24 @@
                 cb(createdTutorials);
               }
             } else { cb(createdTutorials); }
+          })
+      }
+
+      TutorialFactoryObj.updateTut = function(obj, cb) {
+        $http
+          .put('/api/tutorials/edit', obj)
+          .then((res) => {
+            let objId = obj._id;
+            let idx = createdTutorials.map((tut) => { return tut._id }).indexOf(objId);
+
+            createdTutorials[idx] = obj;
+            let topicName = obj.topic.name;
+            if (tutorials[topicName]) {
+              let index = tutorials[topicName].map((tut) => { return tut._id }).indexOf(objId)
+              tutorials[topicName][index] = obj;
+            }
+
+            cb();
           })
       }
 

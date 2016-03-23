@@ -7,6 +7,7 @@
 
     function TopicFactory($http, $q) {
       let TopicFactoryObj = {};
+
       let topics;
 
       TopicFactoryObj.getAllTopics = function() {
@@ -16,6 +17,7 @@
             .get('/api/topics')
             .then((res) => {
               topics = res.data;
+
               return topics;
             })
         },

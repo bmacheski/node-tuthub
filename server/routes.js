@@ -17,6 +17,7 @@ module.exports = app => {
   app.post('/api/tutorials', TutorialController.saveTutorial);
   app.post('/api/tutorials/vote', TutorialController.upvoteTutorial);
   app.post('/api/tutorials/remove', TutorialController.removeTutorial);
+  app.put('/api/tutorials/edit', TutorialController.updateTutorial);
   app.get('/api/tutorials/:tutId', TutorialController.findTutorial);
   app.get('/api/tutorials/find/:userId', TutorialController.findCreatedTutorial);
 

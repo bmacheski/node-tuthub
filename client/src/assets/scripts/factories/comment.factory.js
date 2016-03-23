@@ -7,6 +7,7 @@
 
     function CommentFactory($http) {
       let CommentFactoryObj = {};
+
       let comments = {}
       let callStateObj = {};
 
@@ -17,12 +18,12 @@
           .then((res) => {
             let obj = { _id: res.data}
             let o = Object.assign({}, comment, obj)
+
             if (~Object.keys(comments).indexOf(topic)) {
               comments[topic].push(o);
             } else {
               comments[topic] = o;
             }
-            console.log(comments)
           })
       }
 
@@ -34,6 +35,7 @@
           .then((res) => {
             callStateObj[id] = true;
             comments[id] = res.data;
+
             cb(comments[id]);
           })
       }
@@ -44,7 +46,9 @@
           .then(() => {
             let cIds = comments[topic].map((comment) => { return comment._id });
             let idx = cIds.indexOf(id);
+
             comments[topic] = [...comments[topic].slice(0, idx), ...comments[topic].slice(idx + 1)];
+
             cb(comments[topic]);
           })
       }

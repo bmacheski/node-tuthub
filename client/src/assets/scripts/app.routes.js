@@ -25,7 +25,12 @@
           controller: 'CommentsCtrl',
           controllerAs: 'comm'
         })
-        .when('/edit', {
+        .when('/profile', {
+          templateUrl: 'views/profile.html',
+          controller: 'ProfileCtrl',
+          controllerAs: 'profile'
+        })
+        .when('/profile/:topicId/:tutId', {
           templateUrl: 'views/edit.html',
           controller: 'EditCtrl',
           controllerAs: 'edit'
