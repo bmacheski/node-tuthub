@@ -13,6 +13,7 @@
 
       CommentFactoryObj.saveComment = function(comment) {
         let topic = comment.topic;
+
         $http
           .post('/api/comments', comment)
           .then((res) => {

@@ -27,7 +27,7 @@
 
       TutorialFactoryObj.addTutorial = function(name, url, topic, domain, username, cb) {
         let tutorialObj = {
-          name: name, url: url, topic: topic, domain: domain, postedBy: username
+          name: name, url: url, topic: topic, domain: domain, postedBy: { username: username }
         };
 
         $http
@@ -104,11 +104,13 @@
           .then((res) => {
             let objId = obj._id;
             let idx = createdTutorials.map((tut) => { return tut._id }).indexOf(objId);
+            let topicName = obj.topic.name;
 
             createdTutorials[idx] = obj;
-            let topicName = obj.topic.name;
+
             if (tutorials[topicName]) {
-              let index = tutorials[topicName].map((tut) => { return tut._id }).indexOf(objId)
+              let index = tutorials[topicName].map((tut) => { return tut._id }).indexOf(objId);
+
               tutorials[topicName][index] = obj;
             }
 

@@ -4,7 +4,7 @@ const path       = require('path')
     , bodyParser = require('body-parser')
     , passport   = require('passport')
     , session    = require('express-session')
-    , config     = require('./development.config');
+    , config     = require('./environment')();
 
 const secret = config.sessionSecret;
 
