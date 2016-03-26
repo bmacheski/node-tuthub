@@ -25,7 +25,6 @@ TutorialController.saveTutorial = (req, res, next) => {
               postedBy: user._id,
               topic: topic._id
             })
-
             tut.save();
             res.status(200).send({ id: tut._id });
           } else {
@@ -76,6 +75,8 @@ TutorialController.findCreatedTutorial = (req, res, next) => {
         .find({ postedBy: user._id })
         .populate('topic', 'name')
         .exec((err, tutorial) => {
+          if (err) return next(err);
+
           res.send(tutorial);
         })
     })
@@ -89,8 +90,11 @@ TutorialController.removeTutorial = (req, res, next) => {
       let topic = tutorial.topic;
 
       tutorial.remove();
-      tutorial.save();
-      res.status(200).send(topic);
+      tutorial.save((err) => {
+        if (err) return next(err);
+
+        res.status(200).send(topic);
+      });
     })
 }
 
@@ -103,9 +107,12 @@ TutorialController.updateTutorial = (req, res, next) => {
       tutorial.name = req.body.name;
       tutorial.url = req.body.url;
       tutorial.domain = domain;
-      tutorial.save();
 
-      res.sendStatus(200);
+      tutorial.save((err) => {
+        if (err) return next(err);
+
+        res.sendStatus(200);
+      });
     })
 }
 

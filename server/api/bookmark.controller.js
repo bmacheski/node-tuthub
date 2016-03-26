@@ -28,11 +28,13 @@ BookmarkController.saveBookmark = (req, res) => {
 
       if (user && user.bookmarks) {
         user.bookmarks.push(req.body.id);
-        user.save();
+        user.save((err) => {
+          if (err) return next(err);
 
-        res.status(200).send({ message: 'bookmark saved' });
+          res.status(200).send({ message: 'bookmark saved' });
+        });
       } else {
-        res.send({ message: 'something went wrong.' });
+        console.log('something went wrong');
       }
     })
 }
@@ -49,11 +51,14 @@ BookmarkController.deleteBookmark = (req, res) => {
         let idx = ids.indexOf(req.params.id);
 
         user.bookmarks.remove(user.bookmarks[idx]);
-        user.save();
+        user.save((err) => {
+          if (err) return next(err);
 
-        res.status(200).send('deleted.');
+          res.status(200).send('Bookmark deleted successfully.');
+        });
+
       } else {
-        res.send({ message: 'something went wrong' });
+        console.log('Something went wrong');
       }
     })
 }

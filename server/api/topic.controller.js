@@ -7,7 +7,9 @@ const TopicController = {};
 TopicController.findAllTopics = (req, res) => {
   Topic
     .find({}, (err, topics) => {
-      res.send(topics);
+      if (err) return next(err);
+
+      res.status(200).send(topics);
     })
 }
 
@@ -15,8 +17,11 @@ TopicController.saveTopic = (req, res) => {
   let name = req.body.name;
   let topic = new Topic({ name: name });
 
-  topic.save();
-  res.send('topic saved!');
+  topic.save((err) => {
+    if (err) return next(err);
+
+    res.sendStatus(200);
+  });
 }
 
 module.exports = TopicController;

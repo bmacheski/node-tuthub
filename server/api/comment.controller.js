@@ -31,10 +31,16 @@ CommentController.saveComment = (req, res, next) => {
         author: req.body.author
       })
 
-      comment.save();
+      comment.save((err) => {
+        if (err) return next(err);
+      });
+
       tutorial.comments.push(comment._id);
-      tutorial.save();
-      res.status(200).send(comment._id);
+      tutorial.save((err) => {
+        if (err) return next(err);
+
+        res.status(200).send(comment._id);
+      });
     })
 }
 
@@ -46,14 +52,17 @@ CommentController.deleteComment = (req, res, next) => {
       if (err) return next(err);
 
       tutorials.comments.remove(req.params.commentId);
-      tutorials.save();
+      tutorials.save((err) => {
+        if (err) return next(err);
+      });
 
       Comment.findByIdAndRemove(req.params.commentId,
         (err, comment) => {
           if (err) return next(err);
+
+          res.sendStatus(200);
         })
     })
-    res.sendStatus(200);
 }
 
 module.exports = CommentController;
