@@ -13,7 +13,8 @@
         .when('/topic/new', {
           templateUrl: 'views/newtopic.html',
           controller: 'NewTopicCtrl',
-          controllerAs: 'newtopic'
+          controllerAs: 'newtopic',
+          private: true
         })
         .when('/topic/:topicId', {
           templateUrl: 'views/tutorials.html',
@@ -28,32 +29,50 @@
         .when('/profile', {
           templateUrl: 'views/profile.html',
           controller: 'ProfileCtrl',
-          controllerAs: 'profile'
+          controllerAs: 'profile',
+          private: true
         })
         .when('/profile/:topicId/:tutId', {
           templateUrl: 'views/edit.html',
           controller: 'EditCtrl',
-          controllerAs: 'edit'
+          controllerAs: 'edit',
+          private: true
         })
         .when('/tutorial/new', {
           templateUrl: 'views/newtutorial.html',
           controller: 'NewTutorialCtrl',
-          controllerAs: 'newtut'
+          controllerAs: 'newtut',
+          private: true
         })
         .when('/register', {
           templateUrl: 'views/register.html',
           controller: 'RegisterCtrl',
-          controllerAs: 'register'
+          controllerAs: 'register',
+          resolve: {
+            checkAuth: function ($rootScope, $location) {
+              if ($rootScope.loggedIn) {
+                $location.path('/')
+              }
+            }
+          }
         })
         .when('/login', {
           templateUrl: 'views/login.html',
           controller: 'AuthCtrl',
-          controllerAs: 'auth'
+          controllerAs: 'auth',
+          resolve: {
+            checkAuth: function ($rootScope, $location) {
+              if ($rootScope.loggedIn) {
+                $location.path('/')
+              }
+            }
+          }
         })
         .when('/bookmarks', {
           templateUrl: 'views/bookmarks.html',
           controller: 'BookmarkCtrl',
-          controllerAs: 'bookmark'
+          controllerAs: 'bookmark',
+          private: true
         })
         .otherwise({
           redirectTo: '/'
