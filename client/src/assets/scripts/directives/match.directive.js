@@ -9,18 +9,18 @@
       return {
         restrict: 'A',
         require: 'ngModel',
-        link: function(scope, elem, attrs, ctrl) {
+        link: function(scope, elem, attrs, ngModel) {
 
           function passwordMatch(val) {
             scope.$watch(attrs.match, function(newVal, oldVal) {
               let isValid = val === scope.$eval(attrs.match);
 
-              ctrl.$setValidity('match', isValid);
+              ngModel.$setValidity('match', isValid);
             })
             return val;
           }
 
-          ctrl.$parsers.push(passwordMatch);
+          ngModel.$parsers.push(passwordMatch);
         }
       }
     }
