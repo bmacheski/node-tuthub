@@ -8,7 +8,6 @@ const TopicController    = require('./api/topic.controller')
     , passport           = require('passport');
 
 module.exports = app => {
-
   // topics
   app.get('/api/topics', TopicController.findAllTopics);
   app.post('/api/topics', TopicController.saveTopic);

@@ -132,7 +132,12 @@ module.exports = function (grunt) {
     },
     concat: {
       js: {
-        src: ['client/public/assets/scripts/*.js', 'client/public/assets/scripts/**/*.js'],
+        src: [
+        'client/public/assets/scripts/app.js',
+        'client/public/assets/scripts/app.config.js',
+        'client/public/assets/scripts/app.routes.js',
+        'client/public/assets/scripts/**/*.js'
+        ],
         dest: 'client/public/app.min.js'
       }
     },
@@ -179,6 +184,7 @@ module.exports = function (grunt) {
     'bower_concat',
     'jade:prod',
     'sass:prod',
+    'ngAnnotate',
     'concat',
     'uglify'
   ]);
