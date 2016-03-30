@@ -12,5 +12,3 @@ TutHub was built to help make both managing and finding code tutorials / resourc
 * Node.js / Express
 * Mongoose / MongoDB
 * Materialize
-
-https://node-tuthub.herokuapp.com
