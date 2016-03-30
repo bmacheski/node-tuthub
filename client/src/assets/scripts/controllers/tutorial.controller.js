@@ -8,6 +8,7 @@
     function TutorialCtrl($routeParams, TutorialFactory, BookmarkFactory, AuthFactory) {
       let vm = this;
 
+      vm.loading = true;
       vm.email = AuthFactory.getCurrentUserEmail();
       vm.currentTutorial = $routeParams.topicId;
 
@@ -38,6 +39,7 @@
       })
 
       TutorialFactory.getTutorials(vm.currentTutorial, (tuts) => {
+        vm.loading = false;
         vm.tutorials = tuts;
       });
     }

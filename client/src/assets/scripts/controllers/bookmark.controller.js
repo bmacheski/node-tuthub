@@ -9,7 +9,9 @@
       let vm = this;
       let email = AuthFactory.getCurrentUserEmail();
 
+      vm.loading = true;
       BookmarkFactory.getBookmarks(email, (bookmarks) => {
+        vm.loading = false;
         vm.bookmarks = bookmarks;
       })
 

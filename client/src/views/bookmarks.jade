@@ -1,17 +1,27 @@
-h3(ng-show="bookmark.bookmarks.length !== 0") Bookmarks
-div(ng-if="bookmark.bookmarks.length == 0")
-  h3 You have no bookmarks.
-ul.collection(ng-show="bookmark.bookmarks.length !== 0")
-  table.tutlist.table.bordered.centered
-    thead
-      tr
-        th Title
-        th Domain
-    tr(ng-repeat="(id, b) in bookmark.bookmarks")
-      td
-        a(target="_blank" ng-href="{{b.url}}") {{b.name}}
-      td
-        p {{b.domain}}
-      td
-        i.zmdi.zmdi-delete.zmdi-hc-lg(ng-click="bookmark.removeBookmark(b._id)" icon="delete")
+div.preloader-wrapper.active.loading-spinner(ng-show="bookmark.loading")
+  div.spinner-layer.spinner-red-only
+    div.circle-clipper.left
+      div.circle
+    div.gap-patch
+      div.circle
+    div.circle-clipper.right
+      div.circle
+
+div(ng-hide="bookmark.loading")
+  h3(ng-show="bookmark.bookmarks.length !== 0") Bookmarks
+  div(ng-if="bookmark.bookmarks.length == 0")
+    h3 You have no bookmarks.
+  ul.collection(ng-show="bookmark.bookmarks.length !== 0")
+    table.tutlist.table.bordered.centered
+      thead
+        tr
+          th Title
+          th Domain
+      tr(ng-repeat="(id, b) in bookmark.bookmarks")
+        td
+          a(target="_blank" ng-href="{{b.url}}") {{b.name}}
+        td
+          p {{b.domain}}
+        td
+          i.zmdi.zmdi-delete.zmdi-hc-lg(ng-click="bookmark.removeBookmark(b._id)" icon="delete")
 

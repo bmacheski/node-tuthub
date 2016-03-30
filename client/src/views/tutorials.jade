@@ -1,27 +1,37 @@
-div(ng-if="tut.tutorials.length == 0")
-  h4 There aren't any {{tut.currentTutorial}} tutorials yet!
-h4(ng-show="tut.tutorials.length !== 0") {{tut.currentTutorial}}
-ul.collection(ng-show="tut.tutorials.length !== 0")
-  table.centered
-    thead
-      tr
-        th
-        th Title
-        th Source
-        th Poster
-        th
-    tr.tutorial(ng-repeat="(id, tutorial) in tut.tutorials  | orderBy:'-count'")
-      td
-        div(ng-show="loggedIn")
-          a.zmdi.zmdi-thumb-up.zmdi-hc-lg(ng-click="tut.incrementVote(tutorial._id, tut.currentTutorial)")
-          p.upvote {{tutorial.voteCount}}
-      td
-        a(target="_blank" ng-href="{{tutorial.url}}") {{tutorial.name}}
-      td
-        p {{tutorial.domain}}
-      td
-        p {{tutorial.postedBy.username}}
-      td
-        a(ng-href="#/topic/{{tut.currentTutorial}}/{{tutorial._id}}/comments") Comments
-      td.bookmark-td(ng-show="loggedIn" ng-click="tut.addToBookmarks(tutorial._id, tutorial.name, tutorial.url)")
-        i(ng-class="{ 'zmdi zmdi-bookmark-outline zmdi-hc-lg' : tut.bIds.indexOf(tutorial._id) === -1 , 'zmdi zmdi-bookmark zmdi-hc-lg' : tut.bIds.indexOf(tutorial._id) !== -1 }")
+div.preloader-wrapper.active.loading-spinner(ng-show="tut.loading")
+  div.spinner-layer.spinner-red-only
+    div.circle-clipper.left
+      div.circle
+    div.gap-patch
+      div.circle
+    div.circle-clipper.right
+      div.circle
+
+div(ng-hide="tut.loading")
+  div(ng-if="tut.tutorials.length == 0")
+    h4 There aren't any {{tut.currentTutorial}} tutorials yet!
+  h4(ng-show="tut.tutorials.length !== 0") {{tut.currentTutorial}}
+  ul.collection(ng-show="tut.tutorials.length !== 0")
+    table.centered
+      thead
+        tr
+          th
+          th Title
+          th Source
+          th Poster
+          th
+      tr.tutorial(ng-repeat="(id, tutorial) in tut.tutorials  | orderBy:'-count'")
+        td
+          div(ng-show="loggedIn")
+            a.zmdi.zmdi-thumb-up.zmdi-hc-lg(ng-click="tut.incrementVote(tutorial._id, tut.currentTutorial)")
+            p.upvote {{tutorial.voteCount}}
+        td
+          a(target="_blank" ng-href="{{tutorial.url}}") {{tutorial.name}}
+        td
+          p {{tutorial.domain}}
+        td
+          p {{tutorial.postedBy.username}}
+        td
+          a(ng-href="#/topic/{{tut.currentTutorial}}/{{tutorial._id}}/comments") Comments
+        td.bookmark-td(ng-show="loggedIn" ng-click="tut.addToBookmarks(tutorial._id, tutorial.name, tutorial.url)")
+          i(ng-class="{ 'zmdi zmdi-bookmark-outline zmdi-hc-lg' : tut.bIds.indexOf(tutorial._id) === -1 , 'zmdi zmdi-bookmark zmdi-hc-lg' : tut.bIds.indexOf(tutorial._id) !== -1 }")
