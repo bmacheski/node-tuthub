@@ -8,7 +8,7 @@ const TutorialController = {};
 
 TutorialController.saveTutorial = (req, res, next) => {
   User
-    .findOne({ username: req.body.postedBy })
+    .findOne({ username: req.body.postedBy.username })
     .exec((err, user) => {
       if (err) return next(err);
 
