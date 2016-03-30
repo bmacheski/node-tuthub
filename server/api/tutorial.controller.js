@@ -13,7 +13,7 @@ TutorialController.saveTutorial = (req, res, next) => {
       if (err) return next(err);
 
       Topic
-        .findOne({ 'name': req.body.topic })
+        .findOne({ 'name': req.body.topic.name })
         .exec((err, topic) => {
           if (err) throw err;
 
@@ -87,7 +87,7 @@ TutorialController.removeTutorial = (req, res, next) => {
     .findById(req.body.tutId)
     .populate('topic', 'name')
     .exec((err, tutorial) => {
-      let topic = tutorial.topic;
+      let topic = tutorial.topic.name;
 
       tutorial.remove();
       tutorial.save((err) => {

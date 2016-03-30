@@ -19,17 +19,17 @@ div(ng-hide="profile.loading")
       table.centered
         thead
           tr
-            th
             th Title
             th Source
+            th Category
             th
         tr.tutorial(ng-repeat="(id, tutorial) in profile.tutorials  | orderBy:'-count'")
           td
-            a {{tutorial.name}}
+            a(target="_blank" ng-href="{{tutorial.url}}") {{tutorial.name}}
           td
             p {{tutorial.domain}}
           td
-            a Comments
+            a {{tutorial.topic.name}}
           td
             a.waves-effect.waves-light.btn(ng-href="#/profile/{{tutorial.topic.name}}/{{tutorial._id}}") Edit
             a.waves-effect.waves-light.btn.delete-btn(ng-click="profile.deleteTut(tutorial._id)") Delete

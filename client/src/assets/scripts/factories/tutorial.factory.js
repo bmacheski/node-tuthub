@@ -27,9 +27,8 @@
 
       TutorialFactoryObj.addTutorial = function(name, url, topic, domain, username, cb) {
         let tutorialObj = {
-          name: name, url: url, topic: topic, domain: domain, postedBy: { username: username }
+          name: name, url: url, topic: { name: topic }, domain: domain, postedBy: { username: username }
         };
-
         $http
           .post('/api/tutorials', tutorialObj)
           .then((res) => {
