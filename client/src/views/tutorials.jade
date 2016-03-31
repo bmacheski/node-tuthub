@@ -1,11 +1,4 @@
-div.preloader-wrapper.active.loading-spinner(ng-show="tut.loading")
-  div.spinner-layer.spinner-red-only
-    div.circle-clipper.left
-      div.circle
-    div.gap-patch
-      div.circle
-    div.circle-clipper.right
-      div.circle
+loading(ng-show="tut.loading")
 
 div(ng-hide="tut.loading")
   div(ng-if="tut.tutorials.length == 0")

@@ -1,11 +1,4 @@
-div.preloader-wrapper.active.loading-spinner(ng-show="bookmark.loading")
-  div.spinner-layer.spinner-red-only
-    div.circle-clipper.left
-      div.circle
-    div.gap-patch
-      div.circle
-    div.circle-clipper.right
-      div.circle
+loading(ng-show="bookmark.loading")
 
 div(ng-hide="bookmark.loading")
   h3(ng-show="bookmark.bookmarks.length !== 0") Bookmarks
