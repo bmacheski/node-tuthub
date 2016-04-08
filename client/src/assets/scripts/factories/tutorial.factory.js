@@ -11,6 +11,7 @@
       let tutorials = {};
       let callStateObj = {};
       let createdTutorials;
+      let createdCall = false;
 
       TutorialFactoryObj.getTutorials = function(topic, cb) {
         return callStateObj[topic]
@@ -64,13 +65,13 @@
       }
 
       TutorialFactoryObj.findCreatedTutorials = function(username, cb) {
-        createdTutorials
+        createdCall
         ? cb(createdTutorials) :
         $http
           .get(`/api/tutorials/find/${username}`)
           .then((res) => {
             createdTutorials = res.data ? res.data : [];
-
+            createdCall = true;
             cb(createdTutorials);
           })
       }
